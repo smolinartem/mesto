@@ -6,12 +6,89 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Mesto | Yandex | Practicum</title>
+  <link rel="shortcut icon" href="./images/svg/favicon.svg" type="image/x-icon">
   <link rel="stylesheet" href="./pages/index.css">
   <script defer src="./js/index.js"></script>
 </head>
 
 <body class="page">
-  <p>Проект Яндекс Практикум</p>
+  <header class="header container">
+    <a class="header__link" href="#!">
+      <img class="header__logo" src="./images/svg/logo.svg" alt="Логотип сайта.">
+    </a>
+  </header>
+
+  <main class="main container">
+    <section class="profile" aria-label="Информация о пользователе.">
+      <div class="profile__info">
+        <a class="profile__avatar" href="#!">
+          <img class="profile__img" src="./images/jpeg/avatar.jpg" alt="Аватар пользователя.">
+        </a>
+
+        <div class="profile__person">
+          <div class="profile__wrap">
+            <h1 class="profile__name">Жак-Ив Кусто</h1>
+            <button class="button button__edit" aria-label="Кпопка для редактирования профиля."></button>
+          </div>
+
+          <span class="profile__job">Исследователь океана</span>
+        </div>
+      </div>
+
+      <button class="button button__add" aria-label="Кпопка для добавления фотографий."></button>
+    </section>
+
+    <section class="gallery" aria-label="Галлерея фотографий.">
+      <ul class="gallery__list">
+        <li class="gallery__item">
+          <img class="gallery__image" src="./images/jpeg/gallery-01.jpg" alt="#">
+          <div class="gallery__info">
+            <h2 class="gallery__name">Карачаевск</h2>
+            <button class="button button__like" aria-label="Кнопка лайк."></button>
+          </div>
+        </li>
+        <li class="gallery__item">
+          <img class="gallery__image" src="./images/jpeg/gallery-02.jpg" alt="#">
+          <div class="gallery__info">
+            <h2 class="gallery__name">Гора Эльбрусccccccccc</h2>
+            <button class="button button__like" aria-label="Кнопка лайк."></button>
+          </div>
+        </li>
+        <li class="gallery__item">
+          <img class="gallery__image" src="./images/jpeg/gallery-03.jpg" alt="#">
+          <div class="gallery__info">
+            <h2 class="gallery__name">Домбай</h2>
+            <button class="button button__like" aria-label="Кнопка лайк."></button>
+          </div>
+        </li>
+        <li class="gallery__item">
+          <img class="gallery__image" src="./images/jpeg/gallery-01.jpg" alt="#">
+          <div class="gallery__info">
+            <h2 class="gallery__name">Карачаевск</h2>
+            <button class="button button__like" aria-label="Кнопка лайк."></button>
+          </div>
+        </li>
+        <li class="gallery__item">
+          <img class="gallery__image" src="./images/jpeg/gallery-02.jpg" alt="#">
+          <div class="gallery__info">
+            <h2 class="gallery__name">Карачаевск</h2>
+            <button class="button button__like" aria-label="Кнопка лайк."></button>
+          </div>
+        </li>
+        <li class="gallery__item">
+          <img class="gallery__image" src="./images/jpeg/gallery-03.jpg" alt="#">
+          <div class="gallery__info">
+            <h2 class="gallery__name">Карачаевск</h2>
+            <button class="button button__like" aria-label="Кнопка лайк."></button>
+          </div>
+        </li>
+      </ul>
+    </section>
+  </main>
+
+  <footer class="footer container">
+    <a class="footer__link" href="#!" lang="ru">&copy; 2020 Mesto Russia</a>
+  </footer>
 
 </body>
 
