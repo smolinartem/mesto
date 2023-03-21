@@ -12,83 +12,107 @@
 </head>
 
 <body class="page">
-  <header class="header container">
-    <a class="header__link" href="#!">
-      <img class="header__logo" src="./images/svg/logo.svg" alt="Логотип сайта.">
-    </a>
-  </header>
+  <div class='container'>
+    <header class="header">
+      <a class="header__link" href="#!">
+        <img class="header__logo" src="./images/svg/logo.svg" alt="Логотип сайта.">
+      </a>
+    </header>
 
-  <main class="main container">
-    <section class="profile" aria-label="Информация о пользователе.">
-      <div class="profile__info">
-        <a class="profile__avatar" href="#!">
-          <img class="profile__img" src="./images/jpeg/avatar.jpg" alt="Аватар пользователя.">
-        </a>
+    <main class="main">
+      <section class='profile' aria-label="Информация о пользователе.">
+        <div class='profile__info'>
+          <a class="profile__avatar" href="#!">
+            <img class="profile__img" src="./images/jpeg/avatar.jpg" alt="Аватар пользователя." />
+          </a>
 
-        <div class="profile__person">
-          <div class="profile__wrap">
+          <div class='profile__person'>
             <h1 class="profile__name">Жак-Ив Кусто</h1>
-            <button class="button button__edit" aria-label="Кпопка для редактирования профиля."></button>
-          </div>
+            <span class="profile__job">Исследователь океана</span>
 
-          <span class="profile__job">Исследователь океана</span>
+            <button class="button button_type_edit hover" aria-label="Кпопка для редактирования профиля."></button>
+          </div>
         </div>
+        <button class="button button_type_add hover" aria-label="Кпопка для добавления фотографий."></button>
+      </section>
+
+      <section class="gallery" aria-label="Галлерея фотографий.">
+        <ul class="gallery__list">
+          <li class="gallery__item">
+            <div class='gallery__content'>
+              <img class="gallery__image" src="./images/jpeg/gallery-01.jpg" alt="Водопад в джунглях.">
+            </div>
+            <div class="gallery__info">
+              <h2 class="gallery__name">Водопад</h2>
+              <button class="button button_type_like hover" aria-label="Кнопка лайк."></button>
+            </div>
+          </li>
+          <li class="gallery__item">
+            <div class='gallery__content'>
+              <img class="gallery__image" src="./images/jpeg/gallery-02.jpg" alt="Гора на горизонте.">
+            </div>
+            <div class="gallery__info">
+              <h2 class="gallery__name">Гора Эльбрус</h2>
+              <button class="button button_type_like hover" aria-label="Кнопка лайк."></button>
+            </div>
+          </li>
+          <li class="gallery__item">
+            <div class='gallery__content'>
+              <img class="gallery__image" src="./images/jpeg/gallery-03.jpg" alt="Пирамиды.">
+            </div>
+            <div class="gallery__info">
+              <h2 class="gallery__name">Пирамиды</h2>
+              <button class="button button_type_like hover" aria-label="Кнопка лайк."></button>
+            </div>
+          </li>
+          <li class="gallery__item">
+            <div class='gallery__content'>
+              <img class="gallery__image" src="./images/jpeg/gallery-04.jpg" alt="Красный джип на фоне гор.">
+            </div>
+            <div class="gallery__info">
+              <h2 class="gallery__name">Горы</h2>
+              <button class="button button_type_like hover" aria-label="Кнопка лайк."></button>
+            </div>
+          </li>
+          <li class="gallery__item">
+            <div class='gallery__content'>
+              <img class="gallery__image" src="./images/jpeg/gallery-05.jpg" alt="Тёмный лес на фоне гор.">
+            </div>
+            <div class="gallery__info">
+              <h2 class="gallery__name">Домбай</h2>
+              <button class="button button_type_like hover" aria-label="Кнопка лайк."></button>
+            </div>
+          </li>
+          <li class="gallery__item">
+            <div class='gallery__content'>
+              <img class="gallery__image" src="./images/jpeg/gallery-06.jpg" alt="Звёздное небо в пустыне.">
+            </div>
+            <div class="gallery__info">
+              <h2 class="gallery__name">Млечный путь</h2>
+              <button class="button button_type_like hover" aria-label="Кнопка лайк."></button>
+            </div>
+          </li>
+        </ul>
+      </section>
+    </main>
+
+    <footer class="footer">
+      <a class="footer__link" href="#!" lang="en">&copy; 2020 Mesto Russia</a>
+    </footer>
+
+    <section class='popup'>
+      <div class='popup__container'>
+        <button class='button button_type_close hover'></button>
+        <form class='popup__form'>
+          <h2 class='popup__title'>Редактировать профиль</h2>
+          <input class='popup__input popup__input_type_name' type='text' name='name' maxlength='20'>
+          <input class='popup__input popup__input_type_job' type='text' name='job' maxlength='20'>
+          <button class='button button_type_submit hover' type='submit'>Сохранить</button>
+        </form>
       </div>
-
-      <button class="button button__add" aria-label="Кпопка для добавления фотографий."></button>
     </section>
 
-    <section class="gallery" aria-label="Галлерея фотографий.">
-      <ul class="gallery__list">
-        <li class="gallery__item">
-          <img class="gallery__image" src="./images/jpeg/gallery-01.jpg" alt="#">
-          <div class="gallery__info">
-            <h2 class="gallery__name">Карачаевск</h2>
-            <button class="button button__like" aria-label="Кнопка лайк."></button>
-          </div>
-        </li>
-        <li class="gallery__item">
-          <img class="gallery__image" src="./images/jpeg/gallery-02.jpg" alt="#">
-          <div class="gallery__info">
-            <h2 class="gallery__name">Гора Эльбрусccccccccc</h2>
-            <button class="button button__like" aria-label="Кнопка лайк."></button>
-          </div>
-        </li>
-        <li class="gallery__item">
-          <img class="gallery__image" src="./images/jpeg/gallery-03.jpg" alt="#">
-          <div class="gallery__info">
-            <h2 class="gallery__name">Домбай</h2>
-            <button class="button button__like" aria-label="Кнопка лайк."></button>
-          </div>
-        </li>
-        <li class="gallery__item">
-          <img class="gallery__image" src="./images/jpeg/gallery-01.jpg" alt="#">
-          <div class="gallery__info">
-            <h2 class="gallery__name">Карачаевск</h2>
-            <button class="button button__like" aria-label="Кнопка лайк."></button>
-          </div>
-        </li>
-        <li class="gallery__item">
-          <img class="gallery__image" src="./images/jpeg/gallery-02.jpg" alt="#">
-          <div class="gallery__info">
-            <h2 class="gallery__name">Карачаевск</h2>
-            <button class="button button__like" aria-label="Кнопка лайк."></button>
-          </div>
-        </li>
-        <li class="gallery__item">
-          <img class="gallery__image" src="./images/jpeg/gallery-03.jpg" alt="#">
-          <div class="gallery__info">
-            <h2 class="gallery__name">Карачаевск</h2>
-            <button class="button button__like" aria-label="Кнопка лайк."></button>
-          </div>
-        </li>
-      </ul>
-    </section>
-  </main>
-
-  <footer class="footer container">
-    <a class="footer__link" href="#!" lang="ru">&copy; 2020 Mesto Russia</a>
-  </footer>
+  </div>
 
 </body>
 

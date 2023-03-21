@@ -1,0 +1,6 @@
+.gallery__content {
+  width: 282px;
+  height: 282px;
+  cursor: pointer;
+  overflow: hidden;
+}

@@ -1,0 +1,13 @@
+.footer__link {
+  display: inline-block;
+  text-decoration: none;
+  color: var(--grey-color);
+  font-weight: 400;
+  font-size: 18px;
+  line-height: 22px;
+  transition: transform 0.4s ease;
+}
+
+.footer__link:hover {
+  transform: translateX(10px);
+}

@@ -2,206 +2,46 @@
 @import url('../vendor/normalize.css');
 @import url('../vendor/fonts/fonts.css');
 @import url('../vendor/vars.css');
-
-.page {
-  box-sizing: border-box;
-  min-width: 320px;
-  max-width: 1310px;
-  width: 100%;
-  margin: 0 auto;
-  padding: 0 15px;
-
-  font-family: 'Inter', sans-serif;
-  font-size: 24px;
-  font-weight: 900;
-  background-color: var(--black-color);
-  color: var(--white-color);
-
-  -moz-osx-font-smoothing: grayscale;
-  -webkit-font-smoothing: antialiased;
-  -webkit-text-size-adjust: 100%;
-  -ms-text-size-adjust: 100%;
-  -moz-text-size-adjust: 100%;
-  text-rendering: optimizeLegibility;
-}
-
-.container {
-  box-sizing: border-box;
-  max-width: 880px;
-  margin: 0 auto;
-}
-
-.header {
-  padding-top: 45px;
-  padding-bottom: 41px;
-  border-bottom: 1px solid var(--grey-color);
-}
-
-.header__link {
-  display: inline-block;
-  text-decoration: none;
-  transition: transform 0.4s ease-in-out;
-}
-.header__link:hover {
-  transform: translateX(10px);
-}
-
-.header__logo {
-  max-width: 100%;
-  object-fit: cover;
-  object-position: center;
-}
-
-.profile {
-  padding-top: 40px;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-}
-
-.profile__info {
-  display: flex;
-  align-items: center;
-}
-
-.profile__avatar {
-  margin-right: 30px;
-  display: block;
-  height: 120px;
-  width: 120px;
-  border-radius: 50%;
-  overflow: hidden;
-}
-.profile__img {
-  max-width: 100%;
-  object-fit: cover;
-  object-position: center;
-  transition: transform 0.4s ease-in-out;
-}
-.profile__img:hover {
-  transform: scale(1.2);
-}
-
-.profile__wrap {
-  display: flex;
-  align-items: center;
-  gap: 18px;
-}
-
-.profile__name {
-  margin: 0;
-  display: block;
-  font-weight: 500;
-  font-size: 42px;
-  line-height: 1.14;
-}
-.profile__job {
-  margin: 0;
-  margin-top: 5px;
-  display: block;
-  font-weight: 400;
-  font-size: 18px;
-  line-height: 1.2;
-}
-
-.button {
-  border: none;
-  padding: 0;
-  background-color: transparent;
-  cursor: pointer;
-}
-.button__edit {
-  width: 24px;
-  height: 24px;
-  border: 1px solid var(--white-color);
-
-  background-image: url('../images/svg/edit-btn.svg');
-  background-size: 10px 10px;
-  background-position: center;
-  background-repeat: no-repeat;
-}
-.button__add {
-  width: 150px;
-  height: 50px;
-  border: 2px solid #ffffff;
-  border-radius: 2px;
-
-  background-image: url('../images/svg/add-btn.svg');
-  background-size: 22px 22px;
-  background-position: center;
-  background-repeat: no-repeat;
-}
-
-.button__like {
-  flex-shrink: 0;
-  width: 22px;
-  height: 19px;
-
-  background-image: url('../images/svg/like-btn.svg');
-  background-size: contain;
-  background-position: center;
-  background-repeat: no-repeat;
-}
-
-.gallery {
-  padding-top: 50px;
-}
-.gallery__list {
-  list-style: none;
-  margin: 0;
-  padding: 0;
-
-  display: grid;
-  gap: 17px;
-  grid-template-columns: repeat(auto-fit, minmax(282px, 1fr));
-}
-.gallery__item {
-  border-radius: 10px;
-  overflow: hidden;
-}
-
-.gallery__image {
-  max-width: 100%;
-  object-fit: cover;
-  object-position: center;
-  vertical-align: top;
-}
-.gallery__info {
-  padding: 25px 20px 30px;
-  background-color: var(--white-color);
-
-  border-radius: 0 0 10px 10px;
-
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 20px;
-}
-.gallery__name {
-  margin: 0;
-  font-weight: 900;
-  font-size: 24px;
-  line-height: 29px;
-  color: var(--black-color);
-
-  text-overflow: ellipsis;
-  white-space: nowrap;
-  overflow: hidden;
-}
-
-.footer {
-  padding-top: 65px;
-  padding-bottom: 60px;
-}
-.footer__link {
-  display: inline-block;
-  text-decoration: none;
-  color: var(--grey-color);
-  font-weight: 400;
-  font-size: 18px;
-  line-height: 22px;
-  transition: transform 0.4s ease;
-}
-.footer__link:hover {
-  transform: translateX(10px);
-}
+/*! ----BLOCKS---- */
+@import url('../blocks/page/page.css');
+@import url('../blocks/container/container.css');
+@import url('../blocks/no-scroll/no-scroll.css');
+/*! ----header---- */
+@import url('../blocks/header/header.css');
+@import url('../blocks/header/__link/header__link.css');
+@import url('../blocks/header/__logo/header__logo.css');
+/*! ----buttons---- */
+@import url('../blocks/button/button.css');
+@import url('../blocks/button/_type/button_type_edit.css');
+@import url('../blocks/button/_type/button_type_add.css');
+@import url('../blocks/button/_type/button_type_like.css');
+@import url('../blocks/button/_type/button_type_close.css');
+@import url('../blocks/button/_type/button_type_submit.css');
+/*! ----hover---- */
+@import url('../blocks/hover/hover.css');
+/*! ----profile---- */
+@import url('../blocks/profile/profile.css');
+@import url('../blocks/profile/__info/profile__info.css');
+@import url('../blocks/profile/__avatar/profile__avatar.css');
+@import url('../blocks/profile/__img/profile__img.css');
+@import url('../blocks/profile/__person/profile__person.css');
+@import url('../blocks/profile/__name/profile__name.css');
+@import url('../blocks/profile/__job/profile__job.css');
+/*! ----gallery---- */
+@import url('../blocks/gallery/gallery.css');
+@import url('../blocks/gallery/__list/gallery__list.css');
+@import url('../blocks/gallery/__item/gallery__item.css');
+@import url('../blocks/gallery/__content/gallery__content.css');
+@import url('../blocks/gallery/__image/gallery__image.css');
+@import url('../blocks/gallery/__info/gallery__info.css');
+@import url('../blocks/gallery/__name/gallery__name.css');
+/*! ----footer---- */
+@import url('../blocks/footer/footer.css');
+@import url('../blocks/footer/__link/footer__link.css');
+/*! -----POPUP----- */
+@import url('../blocks/popup/popup.css');
+@import url('../blocks/popup/_opened/popup_opened.css');
+@import url('../blocks/popup/__container/popup__container.css');
+@import url('../blocks/popup/__form/popup__form.css');
+@import url('../blocks/popup/__title/popup__title.css');
+@import url('../blocks/popup/__input/popup__input.css');
