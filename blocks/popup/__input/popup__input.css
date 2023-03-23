@@ -1,10 +1,10 @@
 .popup__input {
-  padding-bottom: 12px;
+  padding-bottom: 10px;
   padding-top: 12px;
   border: 0;
   width: 100%;
   box-sizing: border-box;
-  border-bottom: 1px solid var(--grey-color);
+  border-bottom: 1px solid rgba(0, 0, 0, 0.2);
   background-color: transparent;
 
   font-family: inherit;
@@ -18,8 +18,8 @@
 }
 
 .popup__input:nth-of-type(1) {
-  margin-bottom: 30px;
+  margin-bottom: 15px;
 }
 .popup__input:nth-of-type(2) {
-  margin-bottom: 42px;
+  margin-bottom: 48px;
 }

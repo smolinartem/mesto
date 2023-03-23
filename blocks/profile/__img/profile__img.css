@@ -2,9 +2,11 @@
   max-width: 100%;
   object-fit: cover;
   object-position: center;
-  transition: transform 0.4s ease-in-out;
-}
 
-.profile__img:hover {
-  transform: scale(1.2);
+  flex-shrink: 0;
+  display: block;
+  height: 120px;
+  width: 120px;
+  border-radius: 50%;
+  overflow: hidden;
 }

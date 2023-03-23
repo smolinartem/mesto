@@ -22,18 +22,18 @@
     <main class="main">
       <section class='profile' aria-label="Информация о пользователе.">
         <div class='profile__info'>
-          <a class="profile__avatar" href="#!">
-            <img class="profile__img" src="./images/jpeg/avatar.jpg" alt="Аватар пользователя." />
-          </a>
+          <img class="profile__img" src="./images/jpeg/avatar.jpg" alt="Аватар пользователя.">
 
           <div class='profile__person'>
             <h1 class="profile__name">Жак-Ив Кусто</h1>
-            <span class="profile__job">Исследователь океана</span>
+            <p class="profile__job">Исследователь океана</p>
 
-            <button class="button button_type_edit hover" aria-label="Кпопка для редактирования профиля."></button>
+            <button class="profile__button profile__button_type_edit hover" type='button'
+              aria-label="Кпопка для редактирования профиля."></button>
           </div>
         </div>
-        <button class="button button_type_add hover" aria-label="Кпопка для добавления фотографий."></button>
+        <button class="profile__button profile__button_type_add hover" type='button'
+          aria-label="Кпопка для добавления фотографий."></button>
       </section>
 
       <section class="gallery" aria-label="Галлерея фотографий.">
@@ -44,7 +44,8 @@
             </div>
             <div class="gallery__info">
               <h2 class="gallery__name">Водопад</h2>
-              <button class="button button_type_like hover" aria-label="Кнопка лайк."></button>
+              <button class="gallery__button gallery__button_active hover" type='button'
+                aria-label="Кнопка лайк."></button>
             </div>
           </li>
           <li class="gallery__item">
@@ -53,7 +54,7 @@
             </div>
             <div class="gallery__info">
               <h2 class="gallery__name">Гора Эльбрус</h2>
-              <button class="button button_type_like hover" aria-label="Кнопка лайк."></button>
+              <button class="gallery__button hover" type='button' aria-label="Кнопка лайк."></button>
             </div>
           </li>
           <li class="gallery__item">
@@ -62,7 +63,7 @@
             </div>
             <div class="gallery__info">
               <h2 class="gallery__name">Пирамиды</h2>
-              <button class="button button_type_like hover" aria-label="Кнопка лайк."></button>
+              <button class="gallery__button hover" type='button' aria-label="Кнопка лайк."></button>
             </div>
           </li>
           <li class="gallery__item">
@@ -71,7 +72,7 @@
             </div>
             <div class="gallery__info">
               <h2 class="gallery__name">Горы</h2>
-              <button class="button button_type_like hover" aria-label="Кнопка лайк."></button>
+              <button class="gallery__button hover" type='button' aria-label="Кнопка лайк."></button>
             </div>
           </li>
           <li class="gallery__item">
@@ -80,7 +81,7 @@
             </div>
             <div class="gallery__info">
               <h2 class="gallery__name">Домбай</h2>
-              <button class="button button_type_like hover" aria-label="Кнопка лайк."></button>
+              <button class="gallery__button hover" type='button' aria-label="Кнопка лайк."></button>
             </div>
           </li>
           <li class="gallery__item">
@@ -89,7 +90,7 @@
             </div>
             <div class="gallery__info">
               <h2 class="gallery__name">Млечный путь</h2>
-              <button class="button button_type_like hover" aria-label="Кнопка лайк."></button>
+              <button class="gallery__button hover" type='button' aria-label="Кнопка лайк."></button>
             </div>
           </li>
         </ul>
@@ -97,17 +98,18 @@
     </main>
 
     <footer class="footer">
-      <a class="footer__link" href="#!" lang="en">&copy; 2020 Mesto Russia</a>
+      <p class="footer__copyright" lang="en">&copy; 2023 Mesto Russia</p>
     </footer>
 
     <section class='popup'>
       <div class='popup__container'>
-        <button class='button button_type_close hover'></button>
-        <form class='popup__form'>
-          <h2 class='popup__title'>Редактировать профиль</h2>
-          <input class='popup__input popup__input_type_name' type='text' name='name' maxlength='20'>
-          <input class='popup__input popup__input_type_job' type='text' name='job' maxlength='20'>
-          <button class='button button_type_submit hover' type='submit'>Сохранить</button>
+        <button class='popup__button popup__button_type_close hover' type='button'
+          aria-label='Кнопка закрыть.'></button>
+        <h2 class='popup__title'>Редактировать профиль</h2>
+        <form class='popup__form' name='popup-profile'>
+          <input class='popup__input popup__input_type_name' type='text' name='name' placeholder='Введите имя'>
+          <input class='popup__input popup__input_type_job' type='text' name='job' placeholder='Введите профессию'>
+          <button class='popup__button popup__button_type_submit hover' type='submit'>Сохранить</button>
         </form>
       </div>
     </section>
