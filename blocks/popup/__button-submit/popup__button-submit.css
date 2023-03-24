@@ -1,4 +1,8 @@
-.popup__button_type_submit {
+.popup__button-submit {
+  border: none;
+  padding: 0;
+  background-color: transparent;
+  cursor: pointer;
   width: 100%;
   background-color: var(--black-color);
   color: var(--white-color);
@@ -12,7 +16,7 @@
 }
 
 @media screen and (max-width: 540px) {
-  .popup__button_type_submit {
+  .popup__button-submit {
     font-size: 14px;
     line-height: 17px;
   }

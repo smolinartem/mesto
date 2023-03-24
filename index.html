@@ -28,12 +28,11 @@
             <h1 class="profile__name">Жак-Ив Кусто</h1>
             <p class="profile__job">Исследователь океана</p>
 
-            <button class="profile__button profile__button_type_edit hover" type='button'
+            <button class="profile__button-edit hover" type='button'
               aria-label="Кпопка для редактирования профиля."></button>
           </div>
         </div>
-        <button class="profile__button profile__button_type_add hover" type='button'
-          aria-label="Кпопка для добавления фотографий."></button>
+        <button class="profile__button-add hover" type='button' aria-label="Кпопка для добавления фотографий."></button>
       </section>
 
       <section class="gallery" aria-label="Галлерея фотографий.">
@@ -103,13 +102,12 @@
 
     <section class='popup'>
       <div class='popup__container'>
-        <button class='popup__button popup__button_type_close hover' type='button'
-          aria-label='Кнопка закрыть.'></button>
+        <button class='popup__button-close hover' type='button' aria-label='Кнопка закрыть.'></button>
         <h2 class='popup__title'>Редактировать профиль</h2>
         <form class='popup__form' name='popup-profile'>
           <input class='popup__input popup__input_type_name' type='text' name='name' placeholder='Введите имя'>
           <input class='popup__input popup__input_type_job' type='text' name='job' placeholder='Введите профессию'>
-          <button class='popup__button popup__button_type_submit hover' type='submit'>Сохранить</button>
+          <button class='popup__button-submit hover' type='submit'>Сохранить</button>
         </form>
       </div>
     </section>

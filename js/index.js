@@ -1,10 +1,10 @@
-const btnEdit = document?.querySelector('.profile__button_type_edit')
+const btnEdit = document?.querySelector('.profile__button-edit')
 const profileName = document?.querySelector('.profile__name')
 const profileJob = document?.querySelector('.profile__job')
 
 const popupProfile = document?.querySelector('.popup')
 const popupForm = popupProfile?.querySelector('.popup__form')
-const btnClose = popupProfile?.querySelector('.popup__button_type_close')
+const btnClose = popupProfile?.querySelector('.popup__button-close')
 const inputName = popupProfile?.querySelector('.popup__input_type_name')
 const inputJob = popupProfile?.querySelector('.popup__input_type_job')
 
