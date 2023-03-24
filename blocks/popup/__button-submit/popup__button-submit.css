@@ -1,7 +1,5 @@
 .popup__button-submit {
   border: none;
-  padding: 0;
-  background-color: transparent;
   cursor: pointer;
   width: 100%;
   background-color: var(--black-color);
