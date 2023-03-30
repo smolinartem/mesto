@@ -28,70 +28,15 @@
             <h1 class="profile__name">Жак-Ив Кусто</h1>
             <p class="profile__job">Исследователь океана</p>
 
-            <button class="profile__button-edit hover" type='button'
-              aria-label="Кпопка для редактирования профиля."></button>
+            <button class="profile__edit hover" type='button' aria-label="Кпопка для редактирования профиля."></button>
           </div>
         </div>
-        <button class="profile__button-add hover" type='button' aria-label="Кпопка для добавления фотографий."></button>
+        <button class="profile__add hover" type='button' aria-label="Кпопка для добавления фотографий."></button>
       </section>
 
       <section class="gallery" aria-label="Галлерея фотографий.">
         <ul class="gallery__list">
-          <li class="gallery__item">
-            <div class='gallery__content'>
-              <img class="gallery__image" src="./images/jpeg/gallery-01.jpg" alt="Водопад в джунглях.">
-            </div>
-            <div class="gallery__info">
-              <h2 class="gallery__name">Водопад</h2>
-              <button class="gallery__button gallery__button_active hover" type='button'
-                aria-label="Кнопка лайк."></button>
-            </div>
-          </li>
-          <li class="gallery__item">
-            <div class='gallery__content'>
-              <img class="gallery__image" src="./images/jpeg/gallery-02.jpg" alt="Гора на горизонте.">
-            </div>
-            <div class="gallery__info">
-              <h2 class="gallery__name">Гора Эльбрус</h2>
-              <button class="gallery__button hover" type='button' aria-label="Кнопка лайк."></button>
-            </div>
-          </li>
-          <li class="gallery__item">
-            <div class='gallery__content'>
-              <img class="gallery__image" src="./images/jpeg/gallery-03.jpg" alt="Пирамиды.">
-            </div>
-            <div class="gallery__info">
-              <h2 class="gallery__name">Пирамиды</h2>
-              <button class="gallery__button hover" type='button' aria-label="Кнопка лайк."></button>
-            </div>
-          </li>
-          <li class="gallery__item">
-            <div class='gallery__content'>
-              <img class="gallery__image" src="./images/jpeg/gallery-04.jpg" alt="Красный джип на фоне гор.">
-            </div>
-            <div class="gallery__info">
-              <h2 class="gallery__name">Горы</h2>
-              <button class="gallery__button hover" type='button' aria-label="Кнопка лайк."></button>
-            </div>
-          </li>
-          <li class="gallery__item">
-            <div class='gallery__content'>
-              <img class="gallery__image" src="./images/jpeg/gallery-05.jpg" alt="Тёмный лес на фоне гор.">
-            </div>
-            <div class="gallery__info">
-              <h2 class="gallery__name">Домбай</h2>
-              <button class="gallery__button hover" type='button' aria-label="Кнопка лайк."></button>
-            </div>
-          </li>
-          <li class="gallery__item">
-            <div class='gallery__content'>
-              <img class="gallery__image" src="./images/jpeg/gallery-06.jpg" alt="Звёздное небо в пустыне.">
-            </div>
-            <div class="gallery__info">
-              <h2 class="gallery__name">Млечный путь</h2>
-              <button class="gallery__button hover" type='button' aria-label="Кнопка лайк."></button>
-            </div>
-          </li>
+
         </ul>
       </section>
     </main>
@@ -102,15 +47,27 @@
 
     <section class='popup'>
       <div class='popup__container'>
-        <button class='popup__button-close hover' type='button' aria-label='Кнопка закрыть.'></button>
+        <button class='popup__close hover' type='button' aria-label='Кнопка закрыть.'></button>
         <h2 class='popup__title'>Редактировать профиль</h2>
         <form class='popup__form' name='popup-profile'>
           <input class='popup__input popup__input_type_name' type='text' name='name' placeholder='Введите имя'>
           <input class='popup__input popup__input_type_job' type='text' name='job' placeholder='Введите профессию'>
-          <button class='popup__button-submit hover' type='submit'>Сохранить</button>
+          <button class='popup__submit hover' type='submit'>Сохранить</button>
         </form>
       </div>
     </section>
+
+    <template id='gallery-template'>
+      <li class="gallery__item">
+        <div class='gallery__content'>
+          <img class="gallery__image" src="./images/jpeg/gallery-01.jpg" alt="Водопад в джунглях.">
+        </div>
+        <div class="gallery__info">
+          <h2 class="gallery__name">Водопад</h2>
+          <button class="gallery__like hover" type='button' aria-label="Кнопка лайк."></button>
+        </div>
+      </li>
+    </template>
 
   </div>
 

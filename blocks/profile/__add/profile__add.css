@@ -1,4 +1,4 @@
-.profile__button-add {
+.profile__add {
   padding: 0;
   background-color: transparent;
   cursor: pointer;
@@ -15,19 +15,19 @@
 }
 
 @media screen and (max-width: 680px) {
-  .profile__button-add {
+  .profile__add {
     width: 50px;
   }
 }
 
 @media screen and (max-width: 560px) {
-  .profile__button-add {
+  .profile__add {
     width: 80%;
   }
 }
 
 @media screen and (max-width: 400px) {
-  .profile__button-add {
+  .profile__add {
     width: 100%;
     background-size: 16px 16px;
   }

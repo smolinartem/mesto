@@ -1,4 +1,4 @@
-.profile__button-edit {
+.profile__edit {
   padding: 0;
   background-color: transparent;
   cursor: pointer;
@@ -18,13 +18,13 @@
 }
 
 @media screen and (max-width: 560px) {
-  .profile__button-edit {
+  .profile__edit {
     top: 5px;
   }
 }
 
 @media screen and (max-width: 400px) {
-  .profile__button-edit {
+  .profile__edit {
     top: 6px;
     right: -10px;
     width: 18px;

@@ -1,4 +1,4 @@
-.popup__button-submit {
+.popup__submit {
   border: none;
   cursor: pointer;
   width: 100%;
@@ -14,7 +14,7 @@
 }
 
 @media screen and (max-width: 540px) {
-  .popup__button-submit {
+  .popup__submit {
     font-size: 14px;
     line-height: 17px;
   }
