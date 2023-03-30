@@ -8,6 +8,9 @@ const btnClose = popupProfile?.querySelector('.popup__close')
 const inputName = popupProfile?.querySelector('.popup__input_type_name')
 const inputJob = popupProfile?.querySelector('.popup__input_type_job')
 
+const gallery = document.querySelector('.gallery__list')
+const cardTemplate = document.querySelector('#gallery-template').content
+
 const initialCards = [
   {
     name: 'Архыз',
@@ -34,6 +37,19 @@ const initialCards = [
     link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/baikal.jpg',
   },
 ]
+
+function addCard(name, link) {
+  const card = cardTemplate.querySelector('.gallery__item').cloneNode(true)
+
+  card.querySelector('.gallery__image').src = link
+  card.querySelector('.gallery__name').textContent = name
+
+  gallery.prepend(card)
+}
+
+initialCards.forEach((item) => {
+  addCard(item.name, item.link)
+})
 
 const closePopup = () => {
   popupProfile.classList.remove('popup_opened')
