@@ -4,8 +4,4 @@
   object-fit: cover;
   object-position: center;
   vertical-align: top;
-  transition: transform 0.5s ease;
-}
-.gallery__image:hover {
-  transform: scale(1.1);
 }

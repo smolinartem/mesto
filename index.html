@@ -45,11 +45,11 @@
       <p class="footer__copyright" lang="en">&copy; 2023 Mesto Russia</p>
     </footer>
 
-    <section class='popup'>
+    <section class='popup popup_user'>
       <div class='popup__container'>
         <button class='popup__close hover' type='button' aria-label='Кнопка закрыть.'></button>
         <h2 class='popup__title'>Редактировать профиль</h2>
-        <form class='popup__form' name='popup-profile'>
+        <form class='popup__form' name='popup-user'>
           <input class='popup__input popup__input_type_name' type='text' name='name' placeholder='Введите имя'>
           <input class='popup__input popup__input_type_job' type='text' name='job' placeholder='Введите профессию'>
           <button class='popup__submit hover' type='submit'>Сохранить</button>
@@ -57,9 +57,30 @@
       </div>
     </section>
 
+    <section class='popup popup_gallery'>
+      <div class='popup__container'>
+        <button class='popup__close hover' type='button' aria-label='Кнопка закрыть.'></button>
+        <h2 class='popup__title'>Новое место</h2>
+        <form class='popup__form' name='popup-gallery'>
+          <input class='popup__input popup__input_type_place' type='text' name='name' placeholder='Название'>
+          <input class='popup__input popup__input_type_link' type='text' name='link' placeholder='Ссылка на картинку'>
+          <button class='popup__submit hover' type='submit'>Создать</button>
+        </form>
+      </div>
+    </section>
+
+    <section class='popup popup_picture'>
+      <figure class="popup__figure">
+        <button class='popup__close hover' type='button' aria-label='Кнопка закрыть.'></button>
+        <img class="popup__img" src="./images/jpeg/gallery-01.jpg" alt="">
+        <figcaption class="popup__caption">Водопад</figcaption>
+      </figure>
+    </section>
+
     <template id='gallery-template'>
       <li class="gallery__item">
         <div class='gallery__content'>
+          <button class='gallery__trash hover' type='button' aria-label='Кнопка корзины.'></button>
           <img class="gallery__image" src="./images/jpeg/gallery-01.jpg" alt="Водопад в джунглях.">
         </div>
         <div class="gallery__info">
