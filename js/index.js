@@ -1,34 +1,7 @@
-const initialCards = [
-  {
-    name: 'Архыз',
-    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/arkhyz.jpg',
-  },
-  {
-    name: 'Челябинская область',
-    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/chelyabinsk-oblast.jpg',
-  },
-  {
-    name: 'Иваново',
-    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/ivanovo.jpg',
-  },
-  {
-    name: 'Камчатка',
-    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kamchatka.jpg',
-  },
-  {
-    name: 'Холмогорский район',
-    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kholmogorsky-rayon.jpg',
-  },
-  {
-    name: 'Байкал',
-    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/baikal.jpg',
-  },
-]
 // ! кнопки
 const btnEdit = document?.querySelector('.profile__edit')
 const btnAdd = document.querySelector('.profile__add')
 const btnClose = document?.querySelectorAll('.popup__close')
-/* const btnLike = document.querySelectorAll('.gallery__like') */
 
 const userName = document?.querySelector('.profile__name')
 const userJob = document?.querySelector('.profile__job')
@@ -62,31 +35,25 @@ function popupClose(popup) {
 function addCard(name, link) {
   const card = cardTemplate.querySelector('.gallery__item').cloneNode(true)
 
-  card.querySelector('.gallery__image').src = link
+  const galleryImage = card.querySelector('.gallery__image')
+  galleryImage.src = link
+  galleryImage.alt = name
+  galleryImage.addEventListener('click', () => {
+    popupOpen(popupPicture)
+    imageOnScreen.src = link
+    imageOnScreen.alt = name
+    imageCaption.textContent = name
+  })
+
+  card.querySelector('.gallery__like').addEventListener('click', (event) => {
+    event.target.classList.toggle('gallery__like_active')
+  })
+
+  card.querySelector('.gallery__trash').addEventListener('click', () => {
+    card.remove()
+  })
+
   card.querySelector('.gallery__name').textContent = name
-
-  card.querySelectorAll('.gallery__image').forEach((img) => {
-    img.alt = name
-    img.addEventListener('click', (event) => {
-      popupOpen(popupPicture)
-
-      imageOnScreen.src = img.src
-      imageOnScreen.alt = img.alt
-      imageCaption.textContent = img.alt
-    })
-  })
-
-  card.querySelectorAll('.gallery__like').forEach((like) => {
-    like.addEventListener('click', (event) => {
-      event.target.classList.toggle('gallery__like_active')
-    })
-  })
-
-  card.querySelectorAll('.gallery__trash').forEach((trash) => {
-    trash.addEventListener('click', (event) => {
-      event.target.closest('.gallery__item').remove()
-    })
-  })
 
   gallery.prepend(card)
 }
