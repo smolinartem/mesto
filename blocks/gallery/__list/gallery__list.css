@@ -6,17 +6,5 @@
   display: grid;
   column-gap: 18px;
   row-gap: 21px;
-  grid-template-columns: repeat(3, 282px);
-}
-
-@media screen and (max-width: 910px) {
-  .gallery__list {
-    grid-template-columns: repeat(2, 282px);
-    justify-content: center;
-  }
-}
-@media screen and (max-width: 610px) {
-  .gallery__list {
-    grid-template-columns: repeat(1, 282px);
-  }
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
 }
