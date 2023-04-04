@@ -27,12 +27,14 @@ const imageCaption = popupPicture.querySelector('.popup__caption')
 function popupOpen(popup) {
   popup.classList.add('popup_opened')
 }
+
 // ! функция закрытия попапа
 function popupClose(popup) {
   popup.classList.remove('popup_opened')
 }
-// ! функция добавления новой карточки
-function addCard(name, link) {
+
+// ! функция создания новой карточки
+function createCard(name, link) {
   const card = cardTemplate.querySelector('.gallery__item').cloneNode(true)
 
   const galleryImage = card.querySelector('.gallery__image')
@@ -55,37 +57,49 @@ function addCard(name, link) {
 
   card.querySelector('.gallery__name').textContent = name
 
-  gallery.prepend(card)
+  return card
+}
+// ! функция добавления новой карточки
+function addCard(newCard) {
+  gallery.prepend(newCard)
 }
 
 initialCards.forEach((item) => {
-  addCard(item.name, item.link)
+  addCard(createCard(item.name, item.link))
 })
+
 // ! отрытие попапа user
 btnEdit.addEventListener('click', () => {
   popupOpen(popupUser)
   inputName.value = userName.textContent
   inputJob.value = userJob.textContent
 })
+
 // ! отправка формы user
-popupUserForm.addEventListener('submit', (event) => {
+function handleSubmitUserForm(event) {
   event.preventDefault()
   userName.textContent = inputName.value
   userJob.textContent = inputJob.value
 
   popupClose(popupUser)
-})
+}
+popupUserForm.addEventListener('submit', handleSubmitUserForm)
+
 // ! отрытие попапа cards
 btnAdd.addEventListener('click', () => {
   popupOpen(popupAddCards)
 })
+
 // ! отправка формы cards
-popupAddCardsForm.addEventListener('submit', (event) => {
+function handleSubmitCardForm(event) {
   event.preventDefault()
-  addCard(inputPlace.value, inputLink.value)
-  // ./images/jpeg/gallery-01.jpg
+  addCard(createCard(inputPlace.value, inputLink.value))
+  inputPlace.value = ''
+  inputLink.value = ''
   popupClose(popupAddCards)
-})
+}
+popupAddCardsForm.addEventListener('submit', handleSubmitCardForm)
+
 // ! закрытие попапов
 btnClose.forEach((btn) => {
   btn.addEventListener('click', (event) => {

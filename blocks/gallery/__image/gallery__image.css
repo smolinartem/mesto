@@ -5,4 +5,7 @@
   object-fit: cover;
   object-position: center;
   vertical-align: top;
+
+  position: absolute;
+  top: 0;
 }

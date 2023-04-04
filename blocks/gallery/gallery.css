@@ -1,5 +1,6 @@
 .gallery {
   padding-top: 50px;
+  min-height: 30vh;
 }
 
 @media screen and (max-width: 400px) {
