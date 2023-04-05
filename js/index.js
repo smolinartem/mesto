@@ -24,12 +24,12 @@ const imageOnScreen = popupPicture.querySelector('.popup__img')
 const imageCaption = popupPicture.querySelector('.popup__caption')
 
 // ! функция открытия попапа
-function popupOpen(popup) {
+function openPopup(popup) {
   popup.classList.add('popup_opened')
 }
 
 // ! функция закрытия попапа
-function popupClose(popup) {
+function closePopup(popup) {
   popup.classList.remove('popup_opened')
 }
 
@@ -41,7 +41,7 @@ function createCard(name, link) {
   galleryImage.src = link
   galleryImage.alt = name
   galleryImage.addEventListener('click', () => {
-    popupOpen(popupPicture)
+    openPopup(popupPicture)
     imageOnScreen.src = link
     imageOnScreen.alt = name
     imageCaption.textContent = name
@@ -70,7 +70,7 @@ initialCards.forEach((item) => {
 
 // ! отрытие попапа user
 btnEdit.addEventListener('click', () => {
-  popupOpen(popupUser)
+  openPopup(popupUser)
   inputName.value = userName.textContent
   inputJob.value = userJob.textContent
 })
@@ -81,13 +81,13 @@ function handleSubmitUserForm(event) {
   userName.textContent = inputName.value
   userJob.textContent = inputJob.value
 
-  popupClose(popupUser)
+  closePopup(popupUser)
 }
 popupUserForm.addEventListener('submit', handleSubmitUserForm)
 
 // ! отрытие попапа cards
 btnAdd.addEventListener('click', () => {
-  popupOpen(popupAddCards)
+  openPopup(popupAddCards)
 })
 
 // ! отправка формы cards
@@ -96,7 +96,7 @@ function handleSubmitCardForm(event) {
   addCard(createCard(inputPlace.value, inputLink.value))
   inputPlace.value = ''
   inputLink.value = ''
-  popupClose(popupAddCards)
+  closePopup(popupAddCards)
 }
 popupAddCardsForm.addEventListener('submit', handleSubmitCardForm)
 
@@ -104,6 +104,6 @@ popupAddCardsForm.addEventListener('submit', handleSubmitCardForm)
 btnClose.forEach((btn) => {
   btn.addEventListener('click', (event) => {
     const popupToClose = event.target.closest('.popup')
-    popupClose(popupToClose)
+    closePopup(popupToClose)
   })
 })
