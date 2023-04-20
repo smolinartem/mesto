@@ -10,6 +10,7 @@
   <link rel="stylesheet" href="./pages/index.css">
   <script defer src='./js/cards.js'></script>
   <script defer src="./js/index.js"></script>
+  <script defer src="./js/validate.js"></script>
 </head>
 
 <body class="page">
@@ -50,9 +51,15 @@
       <div class='popup__container'>
         <button class='popup__close hover' type='button' aria-label='Кнопка закрыть.'></button>
         <h2 class='popup__title'>Редактировать профиль</h2>
-        <form class='popup__form' name='popup-user'>
-          <input class='popup__input popup__input_type_name' type='text' name='name' placeholder='Введите имя'>
-          <input class='popup__input popup__input_type_job' type='text' name='job' placeholder='Введите профессию'>
+        <form class='popup__form' name='popup-user' novalidate>
+          <input id='input-name' class='popup__input popup__input_type_name' type='text' name='name'
+            placeholder='Введите имя' minlength='2' maxlength='40' required>
+          <span class="input-name-error popup__input-error">Сообщение об ошибке</span>
+
+          <input id='input-job' class='popup__input popup__input_type_job' type='text' name='job'
+            placeholder='Введите профессию' minlength='2' maxlength='40' required>
+          <span class="input-job-error popup__input-error">Сообщение об ошибке</span>
+
           <button class='popup__submit hover' type='submit'>Сохранить</button>
         </form>
       </div>
@@ -62,9 +69,15 @@
       <div class='popup__container'>
         <button class='popup__close hover' type='button' aria-label='Кнопка закрыть.'></button>
         <h2 class='popup__title'>Новое место</h2>
-        <form class='popup__form' name='popup-gallery'>
-          <input class='popup__input popup__input_type_place' type='text' name='name' placeholder='Название'>
-          <input class='popup__input popup__input_type_link' type='text' name='link' placeholder='Ссылка на картинку'>
+        <form class='popup__form' name='popup-gallery' novalidate>
+          <input id='input-place' class='popup__input popup__input_type_place' type='text' name='place'
+            placeholder='Название' minlength='2' maxlength='40' required>
+          <span class="input-place-error popup__input-error">Сообщение об ошибке</span>
+
+          <input id='input-link' class='popup__input popup__input_type_link' type='url' name='link'
+            placeholder='Ссылка на картинку' required>
+          <span class="input-link-error popup__input-error">Сообщение об ошибке</span>
+
           <button class='popup__submit hover' type='submit'>Создать</button>
         </form>
       </div>

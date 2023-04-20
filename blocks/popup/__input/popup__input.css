@@ -14,7 +14,8 @@
   color: var(--black-color);
 }
 .popup__input:focus {
-  outline-color: #5bc25d;
+  outline: none;
+  background-color: beige;
 }
 
 .popup__input:nth-of-type(1) {

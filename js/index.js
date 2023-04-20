@@ -1,11 +1,11 @@
-// ! кнопки
+// кнопки
 const btnEdit = document?.querySelector('.profile__edit')
 const btnAdd = document.querySelector('.profile__add')
 const btnClose = document?.querySelectorAll('.popup__close')
 
 const userName = document?.querySelector('.profile__name')
 const userJob = document?.querySelector('.profile__job')
-// ! попап с информацией о пользователе
+// попап с информацией о пользователе
 const popupUser = document?.querySelector('.popup_user')
 const popupUserForm = popupUser?.querySelector('.popup__form')
 const inputName = popupUser?.querySelector('.popup__input_type_name')
@@ -13,27 +13,25 @@ const inputJob = popupUser?.querySelector('.popup__input_type_job')
 
 const gallery = document.querySelector('.gallery__list')
 const cardTemplate = document.querySelector('#gallery-template').content
-// ! попап с информацией о месте
+// попап с информацией о месте
 const popupAddCards = document.querySelector('.popup_gallery')
 const popupAddCardsForm = popupAddCards.querySelector('.popup__form')
 const inputPlace = popupAddCards.querySelector('.popup__input_type_place')
 const inputLink = popupAddCards.querySelector('.popup__input_type_link')
-// ! попап с картинкой
+// попап с картинкой
 const popupPicture = document.querySelector('.popup_picture')
 const imageOnScreen = popupPicture.querySelector('.popup__img')
 const imageCaption = popupPicture.querySelector('.popup__caption')
 
-// ! функция открытия попапа
 function openPopup(popup) {
   popup.classList.add('popup_opened')
 }
 
-// ! функция закрытия попапа
 function closePopup(popup) {
   popup.classList.remove('popup_opened')
 }
 
-// ! функция создания новой карточки
+// функция создания новой карточки
 function createCard(name, link) {
   const card = cardTemplate.querySelector('.gallery__item').cloneNode(true)
 
@@ -59,7 +57,8 @@ function createCard(name, link) {
 
   return card
 }
-// ! функция добавления новой карточки
+
+// функция добавления новой карточки
 function addCard(newCard) {
   gallery.prepend(newCard)
 }
@@ -68,14 +67,14 @@ initialCards.forEach((item) => {
   addCard(createCard(item.name, item.link))
 })
 
-// ! отрытие попапа user
+// отрытие попапа user
 btnEdit.addEventListener('click', () => {
   openPopup(popupUser)
   inputName.value = userName.textContent
   inputJob.value = userJob.textContent
 })
 
-// ! отправка формы user
+// отправка формы user
 function handleSubmitUserForm(event) {
   event.preventDefault()
   userName.textContent = inputName.value
@@ -85,12 +84,12 @@ function handleSubmitUserForm(event) {
 }
 popupUserForm.addEventListener('submit', handleSubmitUserForm)
 
-// ! отрытие попапа cards
+// отрытие попапа cards
 btnAdd.addEventListener('click', () => {
   openPopup(popupAddCards)
 })
 
-// ! отправка формы cards
+// отправка формы cards
 function handleSubmitCardForm(event) {
   event.preventDefault()
   addCard(createCard(inputPlace.value, inputLink.value))
@@ -100,7 +99,7 @@ function handleSubmitCardForm(event) {
 }
 popupAddCardsForm.addEventListener('submit', handleSubmitCardForm)
 
-// ! закрытие попапов
+// закрытие попапов
 btnClose.forEach((btn) => {
   btn.addEventListener('click', (event) => {
     const popupToClose = event.target.closest('.popup')
