@@ -93,8 +93,7 @@ btnAdd.addEventListener('click', () => {
 function handleSubmitCardForm(event) {
   event.preventDefault()
   addCard(createCard(inputPlace.value, inputLink.value))
-  inputPlace.value = ''
-  inputLink.value = ''
+  popupAddCardsForm.reset()
   closePopup(popupAddCards)
 }
 popupAddCardsForm.addEventListener('submit', handleSubmitCardForm)
@@ -106,3 +105,26 @@ btnClose.forEach((btn) => {
     closePopup(popupToClose)
   })
 })
+
+function closePopupByOverlay() {
+  const popupList = document.querySelectorAll('.popup')
+
+  popupList.forEach((popup) => {
+    popup.addEventListener('click', (event) => {
+      if (event.target.classList.contains('popup')) {
+        closePopup(popup)
+      }
+    })
+  })
+}
+closePopupByOverlay()
+
+function closePopupByEsc() {
+  document.onkeydown = function (event) {
+    if (event.key === 'Escape') {
+      const popupToClose = document.querySelector('.popup_opened')
+      closePopup(popupToClose)
+    }
+  }
+}
+closePopupByEsc()

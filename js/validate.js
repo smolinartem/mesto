@@ -1,47 +1,66 @@
-/* enableValidation({
-  formSelector: '.popup__form',
-  inputSelector: '.popup__input',
-  submitButtonSelector: '.popup__button',
-  inactiveButtonClass: 'popup__button_disabled',
-  inputErrorClass: 'popup__input_type_error',
-  errorClass: 'popup__error_visible',
-}) */
-
-function showInputError(element) {
-  element.classList.add('form__input_type_error')
-
-  const error = document?.querySelector(`.${element.id}-error`)
-  error.textContent = element.validationMessage
-  error.classList.add('popup__input-error_active')
+function showInputError(config, input, error) {
+  input.classList.add(config.inputErrorClass)
+  error.textContent = input.validationMessage
+  error.classList.add(config.errorClass)
 }
 
-function hideInputError(element) {
-  element.classList.remove('form__input_type_error')
-
-  const error = document?.querySelector(`.${element.id}-error`)
-  error.classList.remove('popup__input-error_active')
+function hideInputError(config, input, error) {
+  input.classList.remove(config.inputErrorClass)
+  error.classList.remove(config.errorClass)
   error.textContent = ''
 }
 
-function isValid(input) {
-  if (!input.validity.valid) {
-    showInputError(input)
+function checkInputValidity(config, input) {
+  const error = document.querySelector(`.${input.id}-error`)
+  if (!input.checkValidity()) {
+    showInputError(config, input, error)
   } else {
-    hideInputError(input)
+    hideInputError(config, input, error)
   }
 }
 
-function setEventListeners() {
-  const inputList = document.querySelectorAll('.popup__input')
+function disableButtonSubmit(config, button) {
+  button.setAttribute('disabled', '')
+  button.classList.add(config.inactiveButtonClass)
+}
 
-  inputList.forEach((input) => {
+function enableButtonSubmit(config, button) {
+  button.removeAttribute('disabled')
+  button.classList.remove(config.inactiveButtonClass)
+}
+
+function checkFormValidity(config, form) {
+  const button = form.querySelector(config.submitButtonSelector)
+  if (!form.checkValidity()) {
+    disableButtonSubmit(config, button)
+  } else {
+    enableButtonSubmit(config, button)
+  }
+}
+
+function setEventListeners(config, form) {
+  const inputs = form.querySelectorAll(config.inputSelector)
+  checkFormValidity(config, form)
+  inputs.forEach((input) => {
     input.addEventListener('input', () => {
-      isValid(input)
-
-      console.log(popupUserForm.checkValidity())
-      console.log(popupAddCardsForm.checkValidity())
+      checkInputValidity(config, input)
+      checkFormValidity(config, form)
     })
   })
 }
 
-setEventListeners()
+function enableValidation(config) {
+  const forms = document.querySelectorAll(config.formSelector)
+  forms.forEach((form) => {
+    setEventListeners(config, form)
+  })
+}
+
+enableValidation({
+  formSelector: '.popup__form',
+  inputSelector: '.popup__input',
+  submitButtonSelector: '.popup__submit',
+  inactiveButtonClass: 'popup__submit_disabled',
+  inputErrorClass: 'popup__input_type_error',
+  errorClass: 'popup__error_visible',
+})
