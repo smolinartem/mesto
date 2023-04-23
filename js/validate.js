@@ -22,11 +22,13 @@ function checkInputValidity(config, input) {
 function disableButtonSubmit(config, button) {
   button.setAttribute('disabled', '')
   button.classList.add(config.inactiveButtonClass)
+  button.classList.remove('hover')
 }
 
 function enableButtonSubmit(config, button) {
   button.removeAttribute('disabled')
   button.classList.remove(config.inactiveButtonClass)
+  button.classList.add('hover')
 }
 
 function checkFormValidity(config, form) {

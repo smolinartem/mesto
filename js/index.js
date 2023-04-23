@@ -25,10 +25,12 @@ const imageCaption = popupPicture.querySelector('.popup__caption')
 
 function openPopup(popup) {
   popup.classList.add('popup_opened')
+  document.addEventListener('keydown', closePopupByEsc)
 }
 
 function closePopup(popup) {
   popup.classList.remove('popup_opened')
+  document.removeEventListener('keydown', closePopupByEsc)
 }
 
 // функция создания новой карточки
@@ -80,6 +82,10 @@ function handleSubmitUserForm(event) {
   userName.textContent = inputName.value
   userJob.textContent = inputJob.value
 
+  event.submitter.classList.add('popup__submit_disabled')
+  event.submitter.classList.remove('hover')
+  event.submitter.disabled = true
+
   closePopup(popupUser)
 }
 popupUserForm.addEventListener('submit', handleSubmitUserForm)
@@ -94,6 +100,11 @@ function handleSubmitCardForm(event) {
   event.preventDefault()
   addCard(createCard(inputPlace.value, inputLink.value))
   popupAddCardsForm.reset()
+
+  event.submitter.classList.add('popup__submit_disabled')
+  event.submitter.classList.remove('hover')
+  event.submitter.disabled = true
+
   closePopup(popupAddCards)
 }
 popupAddCardsForm.addEventListener('submit', handleSubmitCardForm)
@@ -110,7 +121,7 @@ function closePopupByOverlay() {
   const popupList = document.querySelectorAll('.popup')
 
   popupList.forEach((popup) => {
-    popup.addEventListener('click', (event) => {
+    popup.addEventListener('mousedown', (event) => {
       if (event.target.classList.contains('popup')) {
         closePopup(popup)
       }
@@ -119,12 +130,9 @@ function closePopupByOverlay() {
 }
 closePopupByOverlay()
 
-function closePopupByEsc() {
-  document.onkeydown = function (event) {
-    if (event.key === 'Escape') {
-      const popupToClose = document.querySelector('.popup_opened')
-      closePopup(popupToClose)
-    }
+function closePopupByEsc(event) {
+  if (event.key === 'Escape') {
+    const popupToClose = document.querySelector('.popup_opened')
+    closePopup(popupToClose)
   }
 }
-closePopupByEsc()
