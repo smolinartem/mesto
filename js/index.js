@@ -11,7 +11,7 @@ const popupUserForm = popupUser?.querySelector('.popup__form')
 const inputName = popupUser?.querySelector('.popup__input_type_name')
 const inputJob = popupUser?.querySelector('.popup__input_type_job')
 
-const gallery = document.querySelector('.gallery__list')
+const gallery = document.querySelector('.gallery__list') //
 const cardTemplate = document.querySelector('#gallery-template').content
 // попап с информацией о месте
 const popupAddCards = document.querySelector('.popup_gallery')
@@ -40,6 +40,7 @@ function createCard(name, link) {
   const galleryImage = card.querySelector('.gallery__image')
   galleryImage.src = link
   galleryImage.alt = name
+  //
   galleryImage.addEventListener('click', () => {
     openPopup(popupPicture)
     imageOnScreen.src = link
