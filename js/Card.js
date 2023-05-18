@@ -1,10 +1,6 @@
-const gallery = document.querySelector('.gallery__list')
+import { openPopup, popupPicture, imageOnScreen, imageCaption } from './index.js'
 
-const popupPicture = document.querySelector('.popup_picture')
-const imageOnScreen = popupPicture.querySelector('.popup__img')
-const imageCaption = popupPicture.querySelector('.popup__caption')
-
-class Card {
+export class Card {
   constructor(data, templateSelector) {
     this._name = data.name
     this._link = data.link
@@ -60,15 +56,4 @@ class Card {
 
     return this._card
   }
-}
-
-initialCards.forEach((item) => {
-  const card = new Card(item, '#gallery-template')
-  const cardElement = card.createCard()
-
-  gallery.prepend(cardElement)
-})
-
-function openPopup(popup) {
-  popup.classList.add('popup_opened')
 }
