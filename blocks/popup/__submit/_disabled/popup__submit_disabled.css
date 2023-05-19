@@ -5,3 +5,6 @@
   opacity: 0.2;
   cursor: default;
 }
+.popup__submit_disabled:hover {
+  opacity: 0.2;
+}

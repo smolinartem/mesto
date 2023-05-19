@@ -1,19 +1,19 @@
-import { initialCards } from './InitialCards.js'
+import { initialCards, config } from './constants.js'
 import { Card } from './Card.js'
 import { FormValidator } from './FormValidator.js'
 
 // кнопки
-const btnEdit = document?.querySelector('.profile__edit')
+const btnEdit = document.querySelector('.profile__edit')
 const btnAdd = document.querySelector('.profile__add')
-const btnClose = document?.querySelectorAll('.popup__close')
+const closeButtons = document.querySelectorAll('.popup__close')
 
-const userName = document?.querySelector('.profile__name')
-const userJob = document?.querySelector('.profile__job')
+const userName = document.querySelector('.profile__name')
+const userJob = document.querySelector('.profile__job')
 // попап с информацией о пользователе
-const popupUser = document?.querySelector('.popup_user')
-const popupUserForm = popupUser?.querySelector('.popup__form')
-const inputName = popupUser?.querySelector('.popup__input_type_name')
-const inputJob = popupUser?.querySelector('.popup__input_type_job')
+const popupUser = document.querySelector('.popup_user')
+const popupUserForm = popupUser.querySelector('.popup__form')
+const inputName = popupUser.querySelector('.popup__input_type_name')
+const inputJob = popupUser.querySelector('.popup__input_type_job')
 
 const gallery = document.querySelector('.gallery__list')
 // попап с информацией о месте
@@ -26,25 +26,22 @@ const popupPicture = document.querySelector('.popup_picture')
 const imageOnScreen = popupPicture.querySelector('.popup__img')
 const imageCaption = popupPicture.querySelector('.popup__caption')
 
-const config = {
-  inputSelector: '.popup__input',
-  submitButtonSelector: '.popup__submit',
-  inactiveButtonClass: 'popup__submit_disabled',
-  inputErrorClass: 'popup__input_type_error',
-  errorClass: 'popup__error_visible',
-}
 //validation
 const userValidator = new FormValidator(config, popupUserForm)
 userValidator.enableValidation()
 
-const cardValidation = new FormValidator(config, popupAddCardsForm)
-cardValidation.enableValidation()
+const cardValidator = new FormValidator(config, popupAddCardsForm)
+cardValidator.enableValidation()
+
+function createNewCard(name, link) {
+  const card = new Card({ name: name, link: link }, '#gallery-template')
+  const cardElement = card.createCard()
+  return cardElement
+}
 
 initialCards.forEach((item) => {
-  const card = new Card(item, '#gallery-template')
-  const cardElement = card.createCard()
-
-  gallery.prepend(cardElement)
+  const newCard = createNewCard(item.name, item.link)
+  gallery.prepend(newCard)
 })
 
 function openPopup(popup) {
@@ -70,9 +67,7 @@ function handleSubmitUserForm(event) {
   userName.textContent = inputName.value
   userJob.textContent = inputJob.value
 
-  event.submitter.classList.add('popup__submit_disabled')
-  event.submitter.classList.remove('hover')
-  event.submitter.disabled = true
+  userValidator.disableButtonSubmit()
 
   closePopup(popupUser)
 }
@@ -87,21 +82,18 @@ btnAdd.addEventListener('click', () => {
 function handleSubmitCardForm(event) {
   event.preventDefault()
 
-  const newCard = new Card({ name: inputPlace.value, link: inputLink.value }, '#gallery-template')
-  const newCardElement = newCard.createCard()
-  gallery.prepend(newCardElement)
+  const newCard = createNewCard(inputPlace.value, inputLink.value)
+  gallery.prepend(newCard)
 
   popupAddCardsForm.reset()
-  event.submitter.classList.add('popup__submit_disabled')
-  event.submitter.classList.remove('hover')
-  event.submitter.disabled = true
+  cardValidator.disableButtonSubmit()
 
   closePopup(popupAddCards)
 }
 popupAddCardsForm.addEventListener('submit', handleSubmitCardForm)
 
 // закрытие попапов
-btnClose.forEach((btn) => {
+closeButtons.forEach((btn) => {
   btn.addEventListener('click', (event) => {
     const popupToClose = event.target.closest('.popup')
     closePopup(popupToClose)

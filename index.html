@@ -9,7 +9,7 @@
   <link rel="shortcut icon" href="./images/svg/favicon.svg" type="image/x-icon">
   <link rel="stylesheet" href="./pages/index.css">
 
-  <script type='module' defer src="./js/index.js"></script>
+  <script type='module' src="./js/index.js"></script>
 </head>
 
 <body class="page">
@@ -56,7 +56,7 @@
           <span class="input-name-error popup__error">Сообщение об ошибке</span>
 
           <input id='input-job' class='popup__input popup__input_type_job' type='text' name='job'
-            placeholder='Введите профессию' minlength='2' maxlength='40' required>
+            placeholder='Введите профессию' minlength='2' maxlength='200' required>
           <span class="input-job-error popup__error">Сообщение об ошибке</span>
 
           <button class='popup__submit hover' type='submit'>Сохранить</button>
@@ -70,7 +70,7 @@
         <h2 class='popup__title'>Новое место</h2>
         <form class='popup__form' name='popup-gallery' novalidate>
           <input id='input-place' class='popup__input popup__input_type_place' type='text' name='place'
-            placeholder='Название' minlength='2' maxlength='40' required>
+            placeholder='Название' minlength='2' maxlength='30' required>
           <span class="input-place-error popup__error">Сообщение об ошибке</span>
 
           <input id='input-link' class='popup__input popup__input_type_link' type='url' name='link'

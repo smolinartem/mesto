@@ -50,8 +50,10 @@ export class Card {
     this._card = this._getElement()
     this._setEventListeners()
 
-    this._card.querySelector('.gallery__image').src = this._link
-    this._card.querySelector('.gallery__image').alt = this._name
+    this._image = this._card.querySelector('.gallery__image')
+    this._image.src = this._link
+    this._image.alt = this._name
+
     this._card.querySelector('.gallery__name').textContent = this._name
 
     return this._card

@@ -5,6 +5,7 @@ export class FormValidator {
     this._errorClass = config.errorClass
     this._submitButtonSelector = config.submitButtonSelector
     this._inactiveButtonClass = config.inactiveButtonClass
+    this._hoverButtonClass = config.hoverButtonClass
     this._formElement = formElement
   }
 
@@ -29,32 +30,31 @@ export class FormValidator {
     }
   }
 
-  _disableButtonSubmit(button) {
-    button.setAttribute('disabled', '')
-    button.classList.add(this._inactiveButtonClass)
-    button.classList.remove('hover')
+  disableButtonSubmit() {
+    this._button.setAttribute('disabled', '')
+    this._button.classList.add(this._inactiveButtonClass)
   }
 
-  _enableButtonSubmit(button) {
-    button.removeAttribute('disabled')
-    button.classList.remove(this._inactiveButtonClass)
-    button.classList.add('hover')
+  _enableButtonSubmit() {
+    this._button.removeAttribute('disabled')
+    this._button.classList.remove(this._inactiveButtonClass)
   }
 
   _checkFormValidity() {
-    const button = this._formElement.querySelector(this._submitButtonSelector)
     if (!this._formElement.checkValidity()) {
-      this._disableButtonSubmit(button)
+      this.disableButtonSubmit()
     } else {
-      this._enableButtonSubmit(button)
+      this._enableButtonSubmit()
     }
   }
 
   _setEventListeners() {
-    const inputs = this._formElement.querySelectorAll(this._inputSelector)
+    this._inputs = this._formElement.querySelectorAll(this._inputSelector)
+    this._button = this._formElement.querySelector(this._submitButtonSelector)
+
     this._checkFormValidity()
 
-    inputs.forEach((input) => {
+    this._inputs.forEach((input) => {
       input.addEventListener('input', () => {
         this._checkInputValidity(input)
         this._checkFormValidity()
