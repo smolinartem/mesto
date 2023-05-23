@@ -1,3 +1,4 @@
+import '../pages/index.css'
 import { initialCards, config } from './constants.js'
 import { Card } from './Card.js'
 import { FormValidator } from './FormValidator.js'
@@ -35,8 +36,7 @@ cardValidator.enableValidation()
 
 function createNewCard(name, link) {
   const card = new Card({ name: name, link: link }, '#gallery-template')
-  const cardElement = card.createCard()
-  return cardElement
+  return card.createCard()
 }
 
 initialCards.forEach((item) => {

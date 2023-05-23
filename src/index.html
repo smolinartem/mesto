@@ -6,24 +6,21 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Mesto | Yandex | Practicum</title>
-  <link rel="shortcut icon" href="./images/svg/favicon.svg" type="image/x-icon">
-  <link rel="stylesheet" href="./pages/index.css">
-
-  <script type='module' src="./js/index.js"></script>
+  <link rel="shortcut icon" href="<%=require('./images/svg/favicon.svg')%>" type="image/x-icon">
 </head>
 
 <body class="page">
   <div class='container'>
     <header class="header">
       <a class="header__link" href="#!">
-        <img class="header__logo" src="./images/svg/logo.svg" alt="Логотип сайта.">
+        <img class="header__logo" src="<%=require('./images/svg/logo.svg')%>" alt="Логотип сайта.">
       </a>
     </header>
 
     <main class="main">
       <section class='profile' aria-label="Информация о пользователе.">
         <div class='profile__info'>
-          <img class="profile__img" src="./images/jpeg/avatar.jpg" alt="Аватар пользователя.">
+          <img class="profile__img" src="<%=require('./images/jpeg/avatar.jpg')%>" alt="Аватар пользователя.">
 
           <div class='profile__person'>
             <h1 class="profile__name">Жак-Ив Кусто</h1>
