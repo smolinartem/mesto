@@ -3,6 +3,7 @@ import { initialCards, config } from './constants.js'
 import Card from './Card.js'
 import Section from './Section.js'
 import { FormValidator } from './FormValidator.js'
+import Popup from './Popup.js'
 import PopupWithImage from './PopupWithImage.js'
 import PopupWithForm from './PopupWithForm.js'
 
@@ -39,7 +40,7 @@ cardValidator.enableValidation() */
 
 const gallerySelector = '.gallery__list'
 
-const defaultCards = new Section(
+const renderCards = new Section(
   {
     items: initialCards,
     renderer: (item) => {
@@ -47,108 +48,35 @@ const defaultCards = new Section(
         handleCardClick: (name, link) => {
           const popupWithImage = new PopupWithImage('.popup_picture')
           popupWithImage.open(name, link)
+          popupWithImage.setEventListeners()
         },
       })
       const newCard = card.createCard()
-      defaultCards.addItem(newCard)
+      renderCards.addItem(newCard)
     },
   },
   gallerySelector
 )
 
-defaultCards.renderItems()
-
-/* function createNewCard(name, link) {
-  const card = new Card({ name: name, link: link }, '#gallery-template')
-  return card.createCard()
-} */
-
-/* initialCards.forEach((item) => {
-  const newCard = createNewCard(item.name, item.link)
-  gallery.prepend(newCard)
-}) */
-
-function openPopup(popup) {
-  popup.classList.add('popup_opened')
-  document.addEventListener('keydown', closePopupByEsc)
-}
-
-function closePopup(popup) {
-  popup.classList.remove('popup_opened')
-  document.removeEventListener('keydown', closePopupByEsc)
-}
-
-// отрытие попапа user
-btnEdit.addEventListener('click', () => {
-  openPopup(popupUser)
-  inputName.value = userName.textContent
-  inputJob.value = userJob.textContent
-})
-
-// отправка формы user
-function handleSubmitUserForm(event) {
-  event.preventDefault()
-  userName.textContent = inputName.value
-  userJob.textContent = inputJob.value
-
-  userValidator.disableButtonSubmit()
-
-  closePopup(popupUser)
-}
-popupUserForm.addEventListener('submit', handleSubmitUserForm)
-
 const popupCardSelector = '.popup_gallery'
 const popupWithCardsInfo = new PopupWithForm(popupCardSelector, {
   handleFormSubmit: (values) => {
     console.log(values)
+    const card = new Card(values, '#gallery-template', {
+      handleCardClick: (name, link) => {
+        const popupWithImage = new PopupWithImage('.popup_picture')
+        popupWithImage.open(name, link)
+        popupWithImage.setEventListeners()
+      },
+    })
+    const newCard = card.createCard()
+    renderCards.addItem(newCard)
   },
 })
+popupWithCardsInfo.setEventListeners()
 
 btnAdd.addEventListener('click', () => {
   popupWithCardsInfo.open()
 })
-/* btnAdd.addEventListener('click', () => {
-  openPopup(popupAddCards)
-})
-function handleSubmitCardForm(event) {
-  event.preventDefault()
 
-  const newCard = createNewCard(inputPlace.value, inputLink.value)
-  gallery.prepend(newCard)
-
-  popupAddCardsForm.reset()
-  cardValidator.disableButtonSubmit()
-
-  closePopup(popupAddCards)
-}
-popupAddCardsForm.addEventListener('submit', handleSubmitCardForm) */
-
-// закрытие попапов
-closeButtons.forEach((btn) => {
-  btn.addEventListener('click', (event) => {
-    const popupToClose = event.target.closest('.popup')
-    closePopup(popupToClose)
-  })
-})
-
-function closePopupByOverlay() {
-  const popupList = document.querySelectorAll('.popup')
-
-  popupList.forEach((popup) => {
-    popup.addEventListener('mousedown', (event) => {
-      if (event.target.classList.contains('popup')) {
-        closePopup(popup)
-      }
-    })
-  })
-}
-closePopupByOverlay()
-
-function closePopupByEsc(event) {
-  if (event.key === 'Escape') {
-    const popupToClose = document.querySelector('.popup_opened')
-    closePopup(popupToClose)
-  }
-}
-
-export { openPopup, popupPicture, imageOnScreen, imageCaption }
+renderCards.renderItems()
