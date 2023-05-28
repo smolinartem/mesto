@@ -2,7 +2,7 @@
 
 ---
 
-![screenshot](./images/jpeg/screenshot.jpg)
+![screenshot](./src/images/jpeg/screenshot.jpg)
 
 ## О проекте
 

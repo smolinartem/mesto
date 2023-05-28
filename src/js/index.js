@@ -1,7 +1,10 @@
 import '../pages/index.css'
 import { initialCards, config } from './constants.js'
-import { Card } from './Card.js'
+import Card from './Card.js'
+import Section from './Section.js'
 import { FormValidator } from './FormValidator.js'
+import PopupWithImage from './PopupWithImage.js'
+import PopupWithForm from './PopupWithForm.js'
 
 // кнопки
 const btnEdit = document.querySelector('.profile__edit')
@@ -18,31 +21,52 @@ const inputJob = popupUser.querySelector('.popup__input_type_job')
 
 const gallery = document.querySelector('.gallery__list')
 // попап с информацией о месте
-const popupAddCards = document.querySelector('.popup_gallery')
+/* const popupAddCards = document.querySelector('.popup_gallery')
 const popupAddCardsForm = popupAddCards.querySelector('.popup__form')
 const inputPlace = popupAddCards.querySelector('.popup__input_type_place')
-const inputLink = popupAddCards.querySelector('.popup__input_type_link')
+const inputLink = popupAddCards.querySelector('.popup__input_type_link') */
 // попап с картинкой
 const popupPicture = document.querySelector('.popup_picture')
 const imageOnScreen = popupPicture.querySelector('.popup__img')
 const imageCaption = popupPicture.querySelector('.popup__caption')
 
 //validation
-const userValidator = new FormValidator(config, popupUserForm)
+/* const userValidator = new FormValidator(config, popupUserForm)
 userValidator.enableValidation()
 
 const cardValidator = new FormValidator(config, popupAddCardsForm)
-cardValidator.enableValidation()
+cardValidator.enableValidation() */
 
-function createNewCard(name, link) {
+const gallerySelector = '.gallery__list'
+
+const defaultCards = new Section(
+  {
+    items: initialCards,
+    renderer: (item) => {
+      const card = new Card(item, '#gallery-template', {
+        handleCardClick: (name, link) => {
+          const popupWithImage = new PopupWithImage('.popup_picture')
+          popupWithImage.open(name, link)
+        },
+      })
+      const newCard = card.createCard()
+      defaultCards.addItem(newCard)
+    },
+  },
+  gallerySelector
+)
+
+defaultCards.renderItems()
+
+/* function createNewCard(name, link) {
   const card = new Card({ name: name, link: link }, '#gallery-template')
   return card.createCard()
-}
+} */
 
-initialCards.forEach((item) => {
+/* initialCards.forEach((item) => {
   const newCard = createNewCard(item.name, item.link)
   gallery.prepend(newCard)
-})
+}) */
 
 function openPopup(popup) {
   popup.classList.add('popup_opened')
@@ -73,12 +97,19 @@ function handleSubmitUserForm(event) {
 }
 popupUserForm.addEventListener('submit', handleSubmitUserForm)
 
-// отрытие попапа cards
-btnAdd.addEventListener('click', () => {
-  openPopup(popupAddCards)
+const popupCardSelector = '.popup_gallery'
+const popupWithCardsInfo = new PopupWithForm(popupCardSelector, {
+  handleFormSubmit: (values) => {
+    console.log(values)
+  },
 })
 
-// отправка формы cards
+btnAdd.addEventListener('click', () => {
+  popupWithCardsInfo.open()
+})
+/* btnAdd.addEventListener('click', () => {
+  openPopup(popupAddCards)
+})
 function handleSubmitCardForm(event) {
   event.preventDefault()
 
@@ -90,7 +121,7 @@ function handleSubmitCardForm(event) {
 
   closePopup(popupAddCards)
 }
-popupAddCardsForm.addEventListener('submit', handleSubmitCardForm)
+popupAddCardsForm.addEventListener('submit', handleSubmitCardForm) */
 
 // закрытие попапов
 closeButtons.forEach((btn) => {

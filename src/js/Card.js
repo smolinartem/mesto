@@ -1,10 +1,11 @@
 import { openPopup, popupPicture, imageOnScreen, imageCaption } from './index.js'
 
-export class Card {
-  constructor(data, templateSelector) {
+export default class Card {
+  constructor(data, templateSelector, { handleCardClick }) {
     this._name = data.name
     this._link = data.link
     this._templateSelector = templateSelector
+    this._handleCardClick = handleCardClick
   }
 
   _getElement() {
@@ -26,7 +27,7 @@ export class Card {
     })
 
     this._card.querySelector('.gallery__image').addEventListener('click', () => {
-      this._showPreview()
+      this._handleCardClick(this._name, this._link)
     })
   }
 
@@ -36,14 +37,6 @@ export class Card {
 
   _toggleLike(event) {
     event.target.classList.toggle('gallery__like_active')
-  }
-
-  _showPreview() {
-    openPopup(popupPicture)
-
-    imageOnScreen.src = this._link
-    imageOnScreen.alt = this._name
-    imageCaption.textContent = this._name
   }
 
   createCard() {
