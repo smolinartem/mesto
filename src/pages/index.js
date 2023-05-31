@@ -29,19 +29,23 @@ userValidator.enableValidation()
 const cardValidator = new FormValidator(config, cardsForm)
 cardValidator.enableValidation()
 
+function createNewCard(item) {
+  const card = new Card(item, '#gallery-template', {
+    handleCardClick: (name, link) => {
+      popupWithImage.open(name, link)
+    },
+  })
+  return card.createCard()
+}
+
+const popupWithImage = new PopupWithImage('.popup_picture')
+popupWithImage.setEventListeners()
+
 const renderCards = new Section(
   {
     items: initialCards,
     renderer: (item) => {
-      const card = new Card(item, '#gallery-template', {
-        handleCardClick: (name, link) => {
-          const popupWithImage = new PopupWithImage('.popup_picture')
-          popupWithImage.open(name, link)
-          popupWithImage.setEventListeners()
-        },
-      })
-      const newCard = card.createCard()
-      renderCards.addItem(newCard)
+      renderCards.addItem(createNewCard(item))
     },
   },
   gallerySelector
@@ -49,16 +53,7 @@ const renderCards = new Section(
 
 const popupWithCardsInfo = new PopupWithForm(popupCardSelector, {
   handleFormSubmit: (values) => {
-    const card = new Card(values, '#gallery-template', {
-      handleCardClick: (name, link) => {
-        const popupWithImage = new PopupWithImage('.popup_picture')
-        popupWithImage.open(name, link)
-        popupWithImage.setEventListeners()
-      },
-    })
-    const newCard = card.createCard()
-    renderCards.addItem(newCard)
-
+    renderCards.addItem(createNewCard(values))
     cardValidator.disableButtonSubmit()
   },
 })

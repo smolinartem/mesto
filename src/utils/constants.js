@@ -13,9 +13,6 @@ export const popupCardSelector = '.popup_gallery'
 export const popupUserSelector = '.popup_user'
 export const userNameSelector = '.profile__name'
 export const userJobSelector = '.profile__job'
-// IMAGE PREVIEW
-export const imagePreview = document.querySelector('.popup__img')
-export const imageCaption = document.querySelector('.popup__caption')
 
 export const initialCards = [
   {
