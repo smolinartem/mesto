@@ -13,6 +13,7 @@ export const popupCardSelector = '.popup_gallery'
 export const popupUserSelector = '.popup_user'
 export const userNameSelector = '.profile__name'
 export const userJobSelector = '.profile__job'
+export const userAvatarSelector = '.profile__img'
 
 export const initialCards = [
   {

@@ -13,6 +13,7 @@ import {
   popupUserSelector,
   userNameSelector,
   userJobSelector,
+  userAvatarSelector,
 } from '../utils/constants.js'
 
 import Card from '../components/Card.js'
@@ -21,6 +22,7 @@ import FormValidator from '../components/FormValidator.js'
 import PopupWithImage from '../components/PopupWithImage.js'
 import PopupWithForm from '../components/PopupWithForm.js'
 import UserInfo from '../components/UserInfo.js'
+import Api from '../components/Api.js'
 
 //validation
 const userValidator = new FormValidator(config, userForm)
@@ -63,7 +65,7 @@ btnAdd.addEventListener('click', () => {
   popupWithCardsInfo.open()
 })
 
-const userInfo = new UserInfo(userNameSelector, userJobSelector)
+const userInfo = new UserInfo(userNameSelector, userJobSelector, userAvatarSelector)
 
 const popupWithUserInfo = new PopupWithForm(popupUserSelector, {
   handleFormSubmit: (values) => {
@@ -80,3 +82,16 @@ btnEdit.addEventListener('click', () => {
 })
 
 renderCards.renderItems()
+
+const api = new Api({ token: 'ba426b9f-ef34-4346-9cd7-a3db6e837a2d', url: 'https://nomoreparties.co/v1/cohort-68' })
+
+api
+  .getUserInfo()
+  .then((result) => {
+    console.log(result)
+    userInfo.setUserInfo({ name: result.name, job: result.about })
+    userInfo.setUserAvatar({ name: result.name, link: result.avatar })
+  })
+  .catch((error) => {
+    console.log(`Error: ${error}`)
+  })
