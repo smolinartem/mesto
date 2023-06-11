@@ -24,6 +24,9 @@ import PopupWithForm from '../components/PopupWithForm.js'
 import UserInfo from '../components/UserInfo.js'
 import Api from '../components/Api.js'
 
+const api = new Api({ token: 'ba426b9f-ef34-4346-9cd7-a3db6e837a2d', url: 'https://nomoreparties.co/v1/cohort-68' })
+const section = new Section(gallerySelector)
+
 //validation
 const userValidator = new FormValidator(config, userForm)
 userValidator.enableValidation()
@@ -43,19 +46,10 @@ function createNewCard(item) {
 const popupWithImage = new PopupWithImage('.popup_picture')
 popupWithImage.setEventListeners()
 
-const renderCards = new Section(
-  {
-    items: initialCards,
-    renderer: (item) => {
-      renderCards.addItem(createNewCard(item))
-    },
-  },
-  gallerySelector
-)
-
 const popupWithCardsInfo = new PopupWithForm(popupCardSelector, {
   handleFormSubmit: (values) => {
-    renderCards.addItem(createNewCard(values))
+    section.renderElement(createNewCard(values))
+    api.setNewCard(values).catch((err) => console.log(`Error: ${err}`))
     cardValidator.disableButtonSubmit()
   },
 })
@@ -70,6 +64,7 @@ const userInfo = new UserInfo(userNameSelector, userJobSelector, userAvatarSelec
 const popupWithUserInfo = new PopupWithForm(popupUserSelector, {
   handleFormSubmit: (values) => {
     userInfo.setUserInfo(values)
+    api.editUserInfo(values).catch((err) => console.log(`Error: ${err}`))
     userValidator.disableButtonSubmit()
   },
 })
@@ -81,16 +76,22 @@ btnEdit.addEventListener('click', () => {
   inputJob.value = userInfo.getUserInfo().job
 })
 
-renderCards.renderItems()
-
-const api = new Api({ token: 'ba426b9f-ef34-4346-9cd7-a3db6e837a2d', url: 'https://nomoreparties.co/v1/cohort-68' })
-
 api
   .getUserInfo()
   .then((result) => {
-    console.log(result)
     userInfo.setUserInfo({ name: result.name, job: result.about })
     userInfo.setUserAvatar({ name: result.name, link: result.avatar })
+  })
+  .catch((error) => {
+    console.log(`Error: ${error}`)
+  })
+
+api
+  .getInitialCards()
+  .then((cards) => {
+    cards.forEach((element) => {
+      section.renderElement(createNewCard(element))
+    })
   })
   .catch((error) => {
     console.log(`Error: ${error}`)
