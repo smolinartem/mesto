@@ -87,6 +87,14 @@
       </figure>
     </section>
 
+    <section class='popup popup_confirmation'>
+      <div class='popup__container'>
+        <button class='popup__close hover' type='button' aria-label='Кнопка закрыть.'></button>
+        <h2 class='popup__title'>Вы уверены?</h2>
+        <button class='popup__submit hover' type='button'>Да</button>
+      </div>
+    </section>
+
     <template id='gallery-template'>
       <li class="gallery__item">
         <div class='gallery__content'>
@@ -95,7 +103,10 @@
         </div>
         <div class="gallery__info">
           <h2 class="gallery__name"></h2>
-          <button class="gallery__like hover" type='button' aria-label="Кнопка лайк."></button>
+          <div class='gallery__button'>
+            <button class="gallery__like hover" type='button' aria-label="Кнопка лайк."></button>
+            <span class='gallery__counter'>8</span>
+          </div>
         </div>
       </li>
     </template>

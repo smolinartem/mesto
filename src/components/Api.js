@@ -1,5 +1,6 @@
 'ba426b9f-ef34-4346-9cd7-a3db6e837a2d'
 'cohort-68'
+'owner id   036b8f2bd11e7f865fac3489'
 
 const serverOptions = {
   token: 'ba426b9f-ef34-4346-9cd7-a3db6e837a2d',
@@ -63,6 +64,14 @@ export default class Api {
         name: values.name,
         link: values.link,
       }),
+    }).then(this._handleResponse)
+  }
+  deleteCard(id) {
+    return fetch(`${this._url}/cards/${id}`, {
+      method: 'DELETE',
+      headers: {
+        authorization: this._token,
+      },
     }).then(this._handleResponse)
   }
 }
