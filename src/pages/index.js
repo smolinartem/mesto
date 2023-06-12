@@ -43,6 +43,25 @@ function createNewCard(item) {
     handleDelete: (cardId, cardElement) => {
       popupWithConfirmation.open(cardId, cardElement)
     },
+    handleLike: (event, cardId, counterElement) => {
+      if (event.target.classList.contains('gallery__like_active')) {
+        api
+          .deleteLike(cardId)
+          .then((res) => {
+            event.target.classList.remove('gallery__like_active')
+            counterElement.textContent = res.likes.length
+          })
+          .catch((err) => console.log(`Error: ${err}`))
+      } else {
+        api
+          .putLike(cardId)
+          .then((res) => {
+            event.target.classList.add('gallery__like_active')
+            counterElement.textContent = res.likes.length
+          })
+          .catch((err) => console.log(`Error: ${err}`))
+      }
+    },
   })
   return card.createCard()
 }
@@ -52,10 +71,7 @@ popupWithImage.setEventListeners()
 
 const popupWithConfirmation = new PopupWithConfirmation('.popup_confirmation', {
   handleConfirmation: (id) => {
-    api
-      .deleteCard(id)
-      .then((res) => console.log(res))
-      .catch((err) => console.log(`Error: ${err}`))
+    api.deleteCard(id).catch((err) => console.log(`Error: ${err}`))
   },
 })
 popupWithConfirmation.setEventListeners()
@@ -94,23 +110,11 @@ btnEdit.addEventListener('click', () => {
   inputJob.value = userInfo.getUserInfo().job
 })
 
-api
-  .getUserInfo()
-  .then((result) => {
-    userInfo.setUserInfo({ name: result.name, job: result.about })
-    userInfo.setUserAvatar({ name: result.name, link: result.avatar })
-  })
-  .catch((error) => {
-    console.log(`Error: ${error}`)
+Promise.all([api.getInitialCards(), api.getUserInfo()]).then(([cards, user]) => {
+  cards.forEach((element) => {
+    section.renderElement(createNewCard(element))
   })
 
-api
-  .getInitialCards()
-  .then((cards) => {
-    cards.forEach((element) => {
-      section.renderElement(createNewCard(element))
-    })
-  })
-  .catch((error) => {
-    console.log(`Error: ${error}`)
-  })
+  userInfo.setUserInfo({ name: user.name, job: user.about })
+  userInfo.setUserAvatar({ name: user.name, link: user.avatar })
+})
