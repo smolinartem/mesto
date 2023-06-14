@@ -9,6 +9,7 @@
 .hover{transition:opacity .3s ease}.hover:hover{opacity:.7}
 .profile{align-items:center;display:flex;justify-content:space-between;padding-top:40px}@media screen and (max-width:560px){.profile{flex-direction:column;gap:32px}}@media screen and (max-width:400px){.profile{padding-left:20px;padding-right:20px}}
 .profile__info{align-items:center;display:flex}@media screen and (max-width:560px){.profile__info{flex-direction:column;gap:26px}}
+.profile__avatar{border-radius:50%;height:120px;overflow:hidden;position:relative;width:120px}.profile__avatar:after{background-image:url(a086f758840ae814ecde.svg);background-position:50%;background-repeat:no-repeat;background-size:26px 26px;content:"";display:block;height:26px;left:50%;opacity:0;position:absolute;top:50%;transform:translate(-50%,-50%);transition:opacity .3s linear;width:26px}.profile__avatar:hover{cursor:pointer}.profile__avatar:hover:after{opacity:1}
 .profile__img{height:100%;-o-object-fit:cover;object-fit:cover;-o-object-position:center;object-position:center;vertical-align:top;width:100%}
 .profile__person{padding-left:30px;padding-right:42px;position:relative}@media screen and (max-width:680px){.profile__person{padding-left:15px;padding-right:35px}}@media screen and (max-width:400px){.profile__person{padding-right:20px}}
 .profile__name{display:block;font-size:42px;font-weight:500;line-height:1.14;margin:0;max-width:300px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}@media screen and (max-width:560px){.profile__name{font-size:34px;line-height:33px;text-align:center}}@media screen and (max-width:400px){.profile__name{font-size:27px;max-width:200px}}
@@ -23,8 +24,10 @@
 .gallery__image{aspect-ratio:1/1;height:100%;max-width:100%;-o-object-fit:cover;object-fit:cover;-o-object-position:center;object-position:center;position:absolute;top:0;vertical-align:top}
 .gallery__info{align-items:center;background-color:var(--white-color);display:flex;gap:20px;justify-content:space-between;padding:18px 20px}
 .gallery__name{color:var(--black-color);font-size:24px;font-weight:900;line-height:29px;margin:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.gallery__button{text-align:center}
 .gallery__like{background-color:transparent;background-image:url(f9cbbc232f4ed178be38.svg);background-position:50%;background-repeat:no-repeat;background-size:contain;border:none;cursor:pointer;flex-shrink:0;height:19px;padding:0;width:22px}
 .gallery__like_active{background-image:url(d750ae7834bd9bfe5181.svg)}
+.gallery__counter{color:var(--black-color);display:block;font-size:13px;font-weight:400;line-height:16px;margin:0;padding:0}
 .footer{padding-bottom:60px;padding-top:65px}@media screen and (max-width:400px){.footer{padding:42px 19px 36px}}
 .footer__copyright{color:var(--grey-color);display:inline-block;font-size:18px;font-weight:400;line-height:22px;margin:0;text-decoration:none}@media screen and (max-width:400px){.footer__copyright{font-size:14px}}
 .popup{align-items:center;background-color:rgba(0,0,0,.5);display:flex;height:100%;justify-content:center;left:0;opacity:0;position:fixed;top:0;transition:visibility .3s,opacity .3s linear;visibility:hidden;width:100%;z-index:9999}
@@ -43,4 +46,4 @@
 .popup__img{height:100%;max-height:75vh;max-width:75vw;-o-object-fit:cover;object-fit:cover;-o-object-position:top;object-position:top;width:100%}
 .popup__caption{color:var(--white-color);font-size:12px;font-weight:400;line-height:15px;padding-top:10px}
 .popup_picture{background-color:rgba(0,0,0,.9)}
-.gallery__button{text-align:center}.gallery__counter{color:var(--black-color);display:block;font-size:13px;font-weight:400;line-height:16px;margin:0;padding:0}.profile__avatar{border-radius:50%;height:120px;overflow:hidden;position:relative;width:120px}.profile__avatar:after{background-image:url(a086f758840ae814ecde.svg);background-position:50%;background-repeat:no-repeat;background-size:26px 26px;content:"";display:block;height:26px;left:50%;opacity:0;position:absolute;top:50%;transform:translate(-50%,-50%);transition:opacity .3s linear;width:26px}.profile__avatar:hover{cursor:pointer}.profile__avatar:hover:after{opacity:1}
+
