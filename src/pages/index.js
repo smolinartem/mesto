@@ -8,8 +8,6 @@ import {
   userForm,
   cardsForm,
   avatarForm,
-  inputName,
-  inputJob,
   gallerySelector,
   popupCardSelector,
   popupUserSelector,
@@ -37,7 +35,7 @@ Promise.all([api.getUserData(), api.getInitialCards()])
     userInfo.setUserInfo({ name: user.name, job: user.about })
     userInfo.setUserAvatar({ name: user.name, link: user.avatar })
 
-    cards.forEach((card) => {
+    cards.reverse().forEach((card) => {
       card.myUserId = user._id
       section.renderElement(createNewCard(card))
     })
@@ -62,19 +60,21 @@ function createNewCard(item) {
     handleDelete: (cardId, cardElement) => {
       popupWithConfirmation.open(cardId, cardElement)
     },
-    handleLike: (isLiked, cardId, counterElement) => {
+    handleLike: (isLiked, cardId) => {
       if (isLiked) {
         api
           .deleteLike(cardId)
           .then((res) => {
-            counterElement.textContent = res.likes.length
+            card.toggleLike(true)
+            card.countLikes(res.likes.length)
           })
           .catch((err) => console.log(`Error: ${err}`))
       } else {
         api
           .putLike(cardId)
           .then((res) => {
-            counterElement.textContent = res.likes.length
+            card.toggleLike(false)
+            card.countLikes(res.likes.length)
           })
           .catch((err) => console.log(`Error: ${err}`))
       }
@@ -89,70 +89,70 @@ function handleAvatarFormSubmit(data) {
     .setNewAvatar(data)
     .then((user) => {
       userInfo.setUserAvatar({ name: user.name, link: user.avatar })
+      popupWithAvatarInfo.close()
     })
     .catch((err) => console.log(`Error: ${err}`))
     .finally(() => {
       popupWithAvatarInfo.renderLoading(false)
     })
-  avatarValidator.disableButtonSubmit()
 }
 
 function handleUserFormSubmit(data) {
-  userInfo.setUserInfo(data)
   popupWithUserInfo.renderLoading(true)
   api
     .editUserInfo(data)
+    .then((user) => {
+      userInfo.setUserInfo({ name: user.name, job: user.about })
+      popupWithUserInfo.close()
+    })
     .catch((err) => console.log(`Error: ${err}`))
     .finally(() => {
       popupWithUserInfo.renderLoading(false)
     })
-  userValidator.disableButtonSubmit()
 }
 
-function handleCardsFromSubmit(data) {
+function handleCardsFormSubmit(data) {
   popupWithCardsInfo.renderLoading(true)
   api
     .setNewCard(data)
     .then((card) => {
       card.myUserId = card.owner._id
       section.renderElement(createNewCard(card))
+      popupWithCardsInfo.close()
     })
     .catch((err) => console.log(`Error: ${err}`))
     .finally(() => {
       popupWithCardsInfo.renderLoading(false)
     })
-  cardValidator.disableButtonSubmit()
+}
+
+function handleConfirmationFormSubmit(id, cardElement) {
+  api
+    .deleteCard(id)
+    .then(() => {
+      cardElement.remove()
+      popupWithConfirmation.close()
+    })
+    .catch((err) => console.log(`Error: ${err}`))
 }
 
 const popupWithImage = new PopupWithImage('.popup_picture')
 popupWithImage.setEventListeners()
 
 const popupWithConfirmation = new PopupWithConfirmation('.popup_confirmation', {
-  handleConfirmation: (id) => {
-    api.deleteCard(id).catch((err) => console.log(`Error: ${err}`))
-  },
+  handleConfirmation: handleConfirmationFormSubmit,
 })
 popupWithConfirmation.setEventListeners()
 
 const popupWithCardsInfo = new PopupWithForm(popupCardSelector, {
-  handleFormSubmit: handleCardsFromSubmit,
+  handleFormSubmit: handleCardsFormSubmit,
 })
 popupWithCardsInfo.setEventListeners()
-
-btnAdd.addEventListener('click', () => {
-  popupWithCardsInfo.open()
-})
 
 const popupWithUserInfo = new PopupWithForm(popupUserSelector, {
   handleFormSubmit: handleUserFormSubmit,
 })
 popupWithUserInfo.setEventListeners()
-
-btnEdit.addEventListener('click', () => {
-  popupWithUserInfo.open()
-  inputName.value = userInfo.getUserInfo().name
-  inputJob.value = userInfo.getUserInfo().job
-})
 
 const popupWithAvatarInfo = new PopupWithForm(popupAvatarSelector, {
   handleFormSubmit: handleAvatarFormSubmit,
@@ -160,5 +160,17 @@ const popupWithAvatarInfo = new PopupWithForm(popupAvatarSelector, {
 popupWithAvatarInfo.setEventListeners()
 
 btnAvatar.addEventListener('click', () => {
+  avatarValidator.resetValidation()
   popupWithAvatarInfo.open()
+})
+
+btnAdd.addEventListener('click', () => {
+  cardValidator.resetValidation()
+  popupWithCardsInfo.open()
+})
+
+btnEdit.addEventListener('click', () => {
+  userValidator.resetValidation()
+  popupWithUserInfo.open()
+  popupWithUserInfo.setInputValues(userInfo.getUserInfo())
 })

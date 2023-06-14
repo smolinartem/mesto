@@ -11,9 +11,7 @@ export default class PopupWithConfirmation extends Popup {
   setEventListeners() {
     super.setEventListeners()
     this._button.addEventListener('click', () => {
-      this._handleConfirmation(this._id)
-      this._card.remove()
-      this.close()
+      this._handleConfirmation(this._id, this._card)
     })
   }
 

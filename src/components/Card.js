@@ -22,6 +22,18 @@ export default class Card {
     return cardElement
   }
 
+  toggleLike(isLiked) {
+    if (isLiked) {
+      this._likeElement.classList.remove('gallery__like_active')
+    } else {
+      this._likeElement.classList.add('gallery__like_active')
+    }
+  }
+
+  countLikes(amount) {
+    this._counterElement.textContent = amount
+  }
+
   _setEventListeners() {
     if (this._ownerId !== this._userId) {
       this._deleteElement.remove()
@@ -33,11 +45,9 @@ export default class Card {
 
     this._likeElement.addEventListener('click', () => {
       if (this._likeElement.classList.contains('gallery__like_active')) {
-        this._handleLike(true, this._id, this._counterElement)
-        this._likeElement.classList.remove('gallery__like_active')
+        this._handleLike(true, this._id)
       } else {
-        this._handleLike(false, this._id, this._counterElement)
-        this._likeElement.classList.add('gallery__like_active')
+        this._handleLike(false, this._id)
       }
     })
 

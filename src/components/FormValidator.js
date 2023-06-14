@@ -30,7 +30,7 @@ export default class FormValidator {
     }
   }
 
-  disableButtonSubmit() {
+  _disableButtonSubmit() {
     this._button.setAttribute('disabled', '')
     this._button.classList.add(this._inactiveButtonClass)
   }
@@ -42,10 +42,18 @@ export default class FormValidator {
 
   _checkFormValidity() {
     if (!this._formElement.checkValidity()) {
-      this.disableButtonSubmit()
+      this._disableButtonSubmit()
     } else {
       this._enableButtonSubmit()
     }
+  }
+
+  resetValidation() {
+    this._disableButtonSubmit()
+    this._inputs.forEach((input) => {
+      const error = document.querySelector(`.${input.id}-error`)
+      this._hideInputError(input, error)
+    })
   }
 
   _setEventListeners() {

@@ -6,9 +6,6 @@ export const btnAvatar = document.querySelector('.profile__avatar')
 export const userForm = document.forms['popup-user']
 export const cardsForm = document.forms['popup-gallery']
 export const avatarForm = document.forms['popup-avatar']
-// INPUTS
-export const inputName = document.querySelector('.popup__input_type_name')
-export const inputJob = document.querySelector('.popup__input_type_job')
 // SELECTORS
 export const gallerySelector = '.gallery__list'
 export const popupCardSelector = '.popup_gallery'
