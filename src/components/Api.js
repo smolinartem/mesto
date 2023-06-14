@@ -21,7 +21,7 @@ export default class Api {
     }
   }
 
-  getUserInfo() {
+  getUserData() {
     return fetch(`${this._url}/users/me`, {
       method: 'GET',
       headers: {
@@ -91,6 +91,19 @@ export default class Api {
       headers: {
         authorization: this._token,
       },
+    }).then(this._handleResponse)
+  }
+
+  setNewAvatar(data) {
+    return fetch(`${this._url}/users/me/avatar`, {
+      method: 'PATCH',
+      headers: {
+        authorization: this._token,
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        avatar: data.avatar,
+      }),
     }).then(this._handleResponse)
   }
 }

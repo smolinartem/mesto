@@ -1,9 +1,11 @@
 // BUTTONS
 export const btnEdit = document.querySelector('.profile__edit')
 export const btnAdd = document.querySelector('.profile__add')
+export const btnAvatar = document.querySelector('.profile__avatar')
 //FORMS
 export const userForm = document.forms['popup-user']
 export const cardsForm = document.forms['popup-gallery']
+export const avatarForm = document.forms['popup-avatar']
 // INPUTS
 export const inputName = document.querySelector('.popup__input_type_name')
 export const inputJob = document.querySelector('.popup__input_type_job')
@@ -11,6 +13,7 @@ export const inputJob = document.querySelector('.popup__input_type_job')
 export const gallerySelector = '.gallery__list'
 export const popupCardSelector = '.popup_gallery'
 export const popupUserSelector = '.popup_user'
+export const popupAvatarSelector = '.popup_avatar'
 export const userNameSelector = '.profile__name'
 export const userJobSelector = '.profile__job'
 export const userAvatarSelector = '.profile__img'

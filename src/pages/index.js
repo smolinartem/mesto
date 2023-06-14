@@ -1,16 +1,18 @@
 import './index.css'
 import {
-  initialCards,
   config,
   btnEdit,
   btnAdd,
+  btnAvatar,
   userForm,
   cardsForm,
+  avatarForm,
   inputName,
   inputJob,
   gallerySelector,
   popupCardSelector,
   popupUserSelector,
+  popupAvatarSelector,
   userNameSelector,
   userJobSelector,
   userAvatarSelector,
@@ -20,13 +22,26 @@ import Card from '../components/Card.js'
 import Section from '../components/Section.js'
 import FormValidator from '../components/FormValidator.js'
 import PopupWithImage from '../components/PopupWithImage.js'
+import PopupWithConfirmation from '../components/PopupWithConfirmation.js'
 import PopupWithForm from '../components/PopupWithForm.js'
 import UserInfo from '../components/UserInfo.js'
 import Api from '../components/Api.js'
-import PopupWithConfirmation from '../components/PopupWithConfirmation.js'
 
 const api = new Api({ token: 'ba426b9f-ef34-4346-9cd7-a3db6e837a2d', url: 'https://nomoreparties.co/v1/cohort-68' })
 const section = new Section(gallerySelector)
+const userInfo = new UserInfo(userNameSelector, userJobSelector, userAvatarSelector)
+
+Promise.all([api.getUserData(), api.getInitialCards()])
+  .then(([user, cards]) => {
+    userInfo.setUserInfo({ name: user.name, job: user.about })
+    userInfo.setUserAvatar({ name: user.name, link: user.avatar })
+
+    cards.forEach((card) => {
+      card.myUserId = user._id
+      section.renderElement(createNewCard(card))
+    })
+  })
+  .catch((err) => console.log(`Error: ${err}`))
 
 //validation
 const userValidator = new FormValidator(config, userForm)
@@ -34,6 +49,9 @@ userValidator.enableValidation()
 
 const cardValidator = new FormValidator(config, cardsForm)
 cardValidator.enableValidation()
+
+const avatarValidator = new FormValidator(config, avatarForm)
+avatarValidator.enableValidation()
 
 function createNewCard(item) {
   const card = new Card(item, '#gallery-template', {
@@ -43,12 +61,11 @@ function createNewCard(item) {
     handleDelete: (cardId, cardElement) => {
       popupWithConfirmation.open(cardId, cardElement)
     },
-    handleLike: (event, cardId, counterElement) => {
-      if (event.target.classList.contains('gallery__like_active')) {
+    handleLike: (isLiked, cardId, counterElement) => {
+      if (isLiked) {
         api
           .deleteLike(cardId)
           .then((res) => {
-            event.target.classList.remove('gallery__like_active')
             counterElement.textContent = res.likes.length
           })
           .catch((err) => console.log(`Error: ${err}`))
@@ -56,7 +73,6 @@ function createNewCard(item) {
         api
           .putLike(cardId)
           .then((res) => {
-            event.target.classList.add('gallery__like_active')
             counterElement.textContent = res.likes.length
           })
           .catch((err) => console.log(`Error: ${err}`))
@@ -81,6 +97,7 @@ const popupWithCardsInfo = new PopupWithForm(popupCardSelector, {
     api
       .setNewCard(values)
       .then((card) => {
+        card.myUserId = card.owner._id
         section.renderElement(createNewCard(card))
       })
       .catch((err) => console.log(`Error: ${err}`))
@@ -92,8 +109,6 @@ popupWithCardsInfo.setEventListeners()
 btnAdd.addEventListener('click', () => {
   popupWithCardsInfo.open()
 })
-
-const userInfo = new UserInfo(userNameSelector, userJobSelector, userAvatarSelector)
 
 const popupWithUserInfo = new PopupWithForm(popupUserSelector, {
   handleFormSubmit: (values) => {
@@ -110,11 +125,18 @@ btnEdit.addEventListener('click', () => {
   inputJob.value = userInfo.getUserInfo().job
 })
 
-Promise.all([api.getInitialCards(), api.getUserInfo()]).then(([cards, user]) => {
-  cards.forEach((element) => {
-    section.renderElement(createNewCard(element))
-  })
+const popupWithAvatarInfo = new PopupWithForm(popupAvatarSelector, {
+  handleFormSubmit: (data) => {
+    api
+      .setNewAvatar(data)
+      .then((user) => {
+        userInfo.setUserAvatar({ name: user.name, link: user.avatar })
+      })
+      .catch((err) => console.log(`Error: ${err}`))
+  },
+})
+popupWithAvatarInfo.setEventListeners()
 
-  userInfo.setUserInfo({ name: user.name, job: user.about })
-  userInfo.setUserAvatar({ name: user.name, link: user.avatar })
+btnAvatar.addEventListener('click', () => {
+  popupWithAvatarInfo.open()
 })
