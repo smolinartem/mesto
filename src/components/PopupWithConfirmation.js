@@ -14,7 +14,6 @@ export default class PopupWithConfirmation extends Popup {
       this._handleConfirmation(this._id)
       this._card.remove()
       this.close()
-      console.log(this._id)
     })
   }
 

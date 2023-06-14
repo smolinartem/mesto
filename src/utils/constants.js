@@ -25,3 +25,8 @@ export const config = {
   inputErrorClass: 'popup__input_type_error',
   errorClass: 'popup__error_visible',
 }
+
+export const serverConfig = {
+  token: 'ba426b9f-ef34-4346-9cd7-a3db6e837a2d',
+  url: 'https://nomoreparties.co/v1/cohort-68',
+}

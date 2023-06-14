@@ -14,6 +14,7 @@
 /* ----profile---- */
 @import url('../blocks/profile/profile.css');
 @import url('../blocks/profile/__info/profile__info.css');
+@import url('../blocks/profile/__avatar/profile__avatar.css');
 @import url('../blocks/profile/__img/profile__img.css');
 @import url('../blocks/profile/__person/profile__person.css');
 @import url('../blocks/profile/__name/profile__name.css');
@@ -29,8 +30,10 @@
 @import url('../blocks/gallery/__image/gallery__image.css');
 @import url('../blocks/gallery/__info/gallery__info.css');
 @import url('../blocks/gallery/__name/gallery__name.css');
+@import url('../blocks/gallery/__button/gallery__button.css');
 @import url('../blocks/gallery/__like/gallery__like.css');
 @import url('../blocks/gallery/__like/_active/gallery__like_active.css');
+@import url('../blocks/gallery/__counter/gallery__counter.css');
 /* ----footer---- */
 @import url('../blocks/footer/footer.css');
 @import url('../blocks/footer/__copyright/footer__copyright.css');
@@ -52,50 +55,3 @@
 @import url('../blocks/popup/__img/popup__img.css');
 @import url('../blocks/popup/__caption/popup__caption.css');
 @import url('../blocks/popup/_picture/popup_picture.css');
-
-.gallery__button {
-  text-align: center;
-}
-.gallery__counter {
-  margin: 0;
-  padding: 0;
-  font-weight: 400;
-  font-size: 13px;
-  line-height: 16px;
-  color: var(--black-color);
-  display: block;
-}
-
-.profile__avatar {
-  position: relative;
-  height: 120px;
-  width: 120px;
-  border-radius: 50%;
-  overflow: hidden;
-}
-
-.profile__avatar::after {
-  content: '';
-  display: block;
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  width: 26px;
-  height: 26px;
-  background-image: url('../images/svg/avatar-edit.svg');
-  background-size: 26px 26px;
-  background-repeat: no-repeat;
-  background-position: center;
-
-  transition: opacity 0.3s linear;
-  opacity: 0;
-}
-
-.profile__avatar:hover {
-  cursor: pointer;
-}
-
-.profile__avatar:hover:after {
-  opacity: 1;
-}
