@@ -102,6 +102,7 @@ function handleUserFormSubmit(data) {
   api
     .editUserInfo(data)
     .then((user) => {
+      console.log(user)
       userInfo.setUserInfo({ name: user.name, job: user.about })
       popupWithUserInfo.close()
     })
